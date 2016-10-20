@@ -1,7 +1,10 @@
+import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
 const Navbar = React.createClass({
-
+	signIn: function() {
+		// send request to server
+	},
 	render: function() {
 		return (
 			<nav>
@@ -16,7 +19,7 @@ const Navbar = React.createClass({
 
 				<ul>
 					<li>
-						<button>Sign in</button>
+						<RaisedButton label="Sign in" secondary={true} onTouchTap={this.signIn} />
 					</li>
 				</ul>
 			</nav>
