@@ -80,13 +80,13 @@
 
 	var _reactRouter = __webpack_require__(35);
 
-	var _SomeComponent = __webpack_require__(240);
+	var _Layout = __webpack_require__(242);
 
-	var _SomeComponent2 = _interopRequireDefault(_SomeComponent);
+	var _Layout2 = _interopRequireDefault(_Layout);
 
-	var _SomeOtherComponent = __webpack_require__(241);
+	var _Landing = __webpack_require__(243);
 
-	var _SomeOtherComponent2 = _interopRequireDefault(_SomeOtherComponent);
+	var _Landing2 = _interopRequireDefault(_Landing);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -99,8 +99,8 @@
 				{ history: _reactRouter.hashHistory },
 				_react2.default.createElement(
 					_reactRouter.Route,
-					{ path: '/', component: _SomeComponent2.default },
-					_react2.default.createElement(_reactRouter.IndexRoute, { component: _SomeOtherComponent2.default })
+					{ path: '/', component: _Layout2.default },
+					_react2.default.createElement(_reactRouter.IndexRoute, { component: _Landing2.default })
 				)
 			);
 		}
@@ -27476,7 +27476,9 @@
 
 
 /***/ },
-/* 240 */
+/* 240 */,
+/* 241 */,
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27489,24 +27491,29 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Navbar = __webpack_require__(244);
+
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SomeComponent = _react2.default.createClass({
-		displayName: 'SomeComponent',
+	var Layout = _react2.default.createClass({
+		displayName: 'Layout',
 
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				null,
-				'Hello'
+				_react2.default.createElement(_Navbar2.default, null),
+				this.props.children
 			);
 		}
 	});
 
-	exports.default = SomeComponent;
+	exports.default = Layout;
 
 /***/ },
-/* 241 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27521,19 +27528,218 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SomeOtherComponent = _react2.default.createClass({
-		displayName: 'SomeOtherComponent',
+	var Landing = _react2.default.createClass({
+		displayName: 'Landing',
 
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				null,
-				'Hello'
+				_react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'OLISTICA'
+					),
+					_react2.default.createElement(
+						'h3',
+						null,
+						'A platform for holistic living'
+					),
+					_react2.default.createElement(
+						'button',
+						null,
+						'Sign in'
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'What is holistic living?'
+					),
+					_react2.default.createElement('img', null),
+					_react2.default.createElement('img', null),
+					_react2.default.createElement('img', null),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Description and benefits'
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Project Details'
+					),
+					'Make these images of tech logos',
+					_react2.default.createElement('img', null),
+					_react2.default.createElement('img', null),
+					_react2.default.createElement('img', null),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Details and source code'
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Who we are'
+					),
+					_react2.default.createElement(
+						'section',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Person Name'
+						),
+						_react2.default.createElement(
+							'h4',
+							null,
+							'Bio with holistic flavor'
+						),
+						_react2.default.createElement(
+							'ul',
+							null,
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							)
+						)
+					),
+					_react2.default.createElement(
+						'section',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Person Name'
+						),
+						_react2.default.createElement(
+							'h4',
+							null,
+							'Bio with holistic flavor'
+						),
+						_react2.default.createElement(
+							'ul',
+							null,
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement('a', { href: '#' })
+							)
+						)
+					),
+					_react2.default.createElement(
+						'button',
+						null,
+						'Sign in'
+					)
+				)
 			);
 		}
 	});
 
-	exports.default = SomeOtherComponent;
+	exports.default = Landing;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Navbar = _react2.default.createClass({
+		displayName: 'Navbar',
+
+
+		render: function render() {
+			return _react2.default.createElement(
+				'nav',
+				null,
+				_react2.default.createElement(
+					'ul',
+					null,
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'div',
+							null,
+							'='
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'h1',
+							null,
+							'Olistica'
+						)
+					)
+				),
+				_react2.default.createElement(
+					'ul',
+					null,
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'button',
+							null,
+							'Sign in'
+						)
+					)
+				)
+			);
+		}
+
+	});
+
+	exports.default = Navbar;
 
 /***/ }
 /******/ ]);
