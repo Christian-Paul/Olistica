@@ -30,12 +30,21 @@ const UserMenu = (props) => (
 const Navbar = React.createClass({
 	getInitialState: function() {
 		return ({
-			signedIn: true,
+			signedIn: false,
 			dockOpen: false
 		})
 	},
 	signIn: function() {
+		this.setState({
+			signedIn: true
+		})
 		// send request to server
+	},
+	signOut: function() {
+		// handle sign out
+		this.setState({
+			signedIn: false
+		})
 	},
 	closeDock: function() {
 		this.setState({ dockOpen: false })
@@ -48,11 +57,17 @@ const Navbar = React.createClass({
 			<div>
 				<AppBar
 					title='Olistica'
+					style={{
+						position: 'fixed',
+						top: 0
+					}}
 					titleStyle={{cursor: 'default'}}
 					iconElementLeft={<IconButton><NavigationMenu /></IconButton>}
 					onLeftIconButtonTouchTap={this.toggleDock}
 					showMenuIconButton={this.state.signedIn}
-					iconElementRight={this.state.signedIn ? <UserMenu /> : <FlatButton label="Sign in" secondary={true} onTouchTap={this.signIn} />}
+					iconElementRight={
+						this.state.signedIn ? <UserMenu /> : <FlatButton label="Sign in" secondary={true} onTouchTap={this.signIn} />
+					}
 				/>
 				<Drawer
 					docked={false}
@@ -60,10 +75,14 @@ const Navbar = React.createClass({
 					onRequestChange={(open) => this.setState({dockOpen: open})}
 				>
 					<AppBar
+						zDepth={0}
 						title='Olistica'
-						titleStyle={{cursor: 'default'}}
-						iconStyleLeft={{color: '#000'}}
-						iconElementLeft={<IconButton><NavigationMenu /></IconButton>}
+						style={{backgroundColor: '#fff'}}
+						titleStyle={{
+							cursor: 'default',
+							color: 'rgba(0, 0, 0, 0.870588)'
+						}}
+						iconElementLeft={<IconButton iconStyle={{fill: 'rgba(0, 0, 0, 0.870588)'}}><NavigationMenu /></IconButton>}
 						onLeftIconButtonTouchTap={this.toggleDock}
 					/>
 					<List>

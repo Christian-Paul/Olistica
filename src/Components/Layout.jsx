@@ -1,4 +1,4 @@
-import {deepOrange500} from 'material-ui/styles/colors';
+import {red500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
@@ -7,7 +7,7 @@ import Navbar from './Navbar.jsx';
 
 const muiTheme = getMuiTheme({
 	palette: {
-		accent1Color: deepOrange500,
+		accent1Color: red500,
 	}
 });
 

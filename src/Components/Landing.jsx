@@ -1,13 +1,28 @@
+import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
 const Landing = React.createClass({
+	signIn: function() {
+		//handle signin
+	},
 	render: function() {
 		return (
 			<div>
-				<section>
-					<h1>OLISTICA</h1>
-					<h3>A platform for holistic living</h3>
-					<button>Sign in</button>
+				<section className='landing'>
+					<h1 className='landing-title'>OLISTICA</h1>
+					<h3 className='landing-subtitle'>A platform for holistic living</h3>
+					<RaisedButton 
+						label="Sign in"
+						style={{
+							height: 50,
+							width: 120
+						}}
+						labelStyle={{
+							fontWeight: 500
+						}}
+						secondary={true} 
+						onTouchTap={this.signIn} 
+					/>
 				</section>
 
 				<section>
