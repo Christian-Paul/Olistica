@@ -70,6 +70,10 @@ html, body
 				width: 100%
 				text-align: center
 
+				.person-name
+					font-size: 2rem
+					font-weight: 300
+
 				img
 					border-radius: 50%
 
@@ -79,9 +83,19 @@ html, body
 
 	footer
 		height: 4rem
+		padding-left: 5vw
+		padding-right: 5vw
 		text-align: center
 		display: flex
 		align-items: center
-		justify-content: center
+		justify-content: space-between
 		background-color: $primary-dark
 		color: #fff
+
+		a
+			color: #fff
+			text-decoration: none
+			transition: color 250ms ease
+
+			&:hover
+				color: #bdbdbd
