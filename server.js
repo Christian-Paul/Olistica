@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // begin app
 app.listen(port, function(req, res) {
 	console.log('listening on 3000');
+	console.log('With a change..');
 })
 
 // sends index page for react to build off of; all other routes are APIs to support the react routes
