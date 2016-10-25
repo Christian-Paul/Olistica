@@ -4,13 +4,14 @@ import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import MenuItem from 'material-ui/MenuItem';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import React from 'react';
 import SocialMood from 'material-ui/svg-icons/social/mood';
 import ActionAccessibility from 'material-ui/svg-icons/action/accessibility';
+import { Link } from 'react-router'
 import LocalLibrary from 'material-ui/svg-icons/maps/local-library';
 
 const UserMenu = (props) => (
@@ -87,7 +88,9 @@ const Navbar = React.createClass({
 						onLeftIconButtonTouchTap={this.toggleDock}
 					/>
 					<List>
-						<ListItem leftIcon={<ActionAccessibility />} primaryText='Weight Tracker' onTouchTap={this.closeDock}></ListItem>
+						<Link to='/weight'>
+							<ListItem leftIcon={<ActionAccessibility />} primaryText='Weight Tracker' onTouchTap={this.closeDock}></ListItem>
+						</Link>
 						<ListItem leftIcon={<LocalLibrary />} primaryText='Book Collection' onTouchTap={this.closeDock}></ListItem>
 						<ListItem leftIcon={<SocialMood />} primaryText='Guided Meditation' onTouchTap={this.closeDock}></ListItem>
 					</List>
