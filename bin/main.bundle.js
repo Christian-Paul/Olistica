@@ -50,7 +50,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _reactTapEventPlugin = __webpack_require__(473);
+	var _reactTapEventPlugin = __webpack_require__(475);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
@@ -62,7 +62,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	__webpack_require__(479);
+	__webpack_require__(481);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45495,6 +45495,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _WeightTable = __webpack_require__(473);
+
+	var _WeightTable2 = _interopRequireDefault(_WeightTable);
+
+	var _WeightChart = __webpack_require__(474);
+
+	var _WeightChart2 = _interopRequireDefault(_WeightChart);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Weight = _react2.default.createClass({
@@ -45502,42 +45510,20 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				entries: [20, 23],
-				userInput: ''
+				entries: [20, 23]
 			};
 		},
-		handleChange: function handleChange(e) {
+		updateEntries: function updateEntries(userInput) {
 			this.setState({
-				userInput: e.target.value
-			});
-		},
-		handleClick: function handleClick() {
-			this.setState({
-				entries: this.state.entries.concat(this.state.userInput),
-				userInput: ''
+				entries: this.state.entries.concat(userInput)
 			});
 		},
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'weight' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'weight-table' },
-					this.state.entries.map(function (item, i) {
-						return _react2.default.createElement(
-							'div',
-							{ key: i },
-							item
-						);
-					})
-				),
-				_react2.default.createElement('input', { type: 'text', value: this.state.userInput, onChange: this.handleChange }),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.handleClick },
-					'Submit'
-				)
+				_react2.default.createElement(_WeightChart2.default, { entries: this.state.entries }),
+				_react2.default.createElement(_WeightTable2.default, { updateEntries: this.updateEntries, entries: this.state.entries })
 			);
 		}
 
@@ -45549,8 +45535,104 @@
 /* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(474);
-	var defaultClickRejectionStrategy = __webpack_require__(475);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var WeightTable = _react2.default.createClass({
+		displayName: 'WeightTable',
+
+		getInitialState: function getInitialState() {
+			return {
+				userInput: ''
+			};
+		},
+		handleChange: function handleChange(e) {
+			this.setState({
+				userInput: e.target.value
+			});
+		},
+		handleClick: function handleClick() {
+			this.setState({
+				userInput: ''
+			});
+
+			this.props.updateEntries(this.state.userInput);
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight-table' },
+				this.props.entries.map(function (item, i) {
+					return _react2.default.createElement(
+						'div',
+						{ key: i },
+						item
+					);
+				}),
+				_react2.default.createElement('input', { type: 'text', value: this.state.userInput, onChange: this.handleChange }),
+				_react2.default.createElement(
+					'button',
+					{ onClick: this.handleClick },
+					'Submit'
+				)
+			);
+		}
+	});
+
+	exports.default = WeightTable;
+
+/***/ },
+/* 474 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Weight = _react2.default.createClass({
+		displayName: 'Weight',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight-chart' },
+				'This is the weight chart',
+				this.props.entries.map(function (item, i) {
+					return _react2.default.createElement(
+						'div',
+						{ key: i },
+						item
+					);
+				})
+			);
+		}
+	});
+
+	exports.default = Weight;
+
+/***/ },
+/* 475 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(476);
+	var defaultClickRejectionStrategy = __webpack_require__(477);
 
 	var alreadyInjected = false;
 
@@ -45572,14 +45654,14 @@
 	  alreadyInjected = true;
 
 	  __webpack_require__(273).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(476)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(478)(shouldRejectClick)
 	  });
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 474 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -45634,7 +45716,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 475 */
+/* 477 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -45645,7 +45727,7 @@
 
 
 /***/ },
-/* 476 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -45673,10 +45755,10 @@
 	var EventPluginUtils = __webpack_require__(275);
 	var EventPropagators = __webpack_require__(272);
 	var SyntheticUIEvent = __webpack_require__(306);
-	var TouchEventUtils = __webpack_require__(477);
+	var TouchEventUtils = __webpack_require__(479);
 	var ViewportMetrics = __webpack_require__(307);
 
-	var keyOf = __webpack_require__(478);
+	var keyOf = __webpack_require__(480);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -45821,7 +45903,7 @@
 
 
 /***/ },
-/* 477 */
+/* 479 */
 /***/ function(module, exports) {
 
 	/**
@@ -45869,7 +45951,7 @@
 
 
 /***/ },
-/* 478 */
+/* 480 */
 /***/ function(module, exports) {
 
 	/**
@@ -45909,16 +45991,16 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 479 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(480);
+	var content = __webpack_require__(482);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(482)(content, {});
+	var update = __webpack_require__(484)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -45935,10 +46017,10 @@
 	}
 
 /***/ },
-/* 480 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(481)();
+	exports = module.exports = __webpack_require__(483)();
 	// imports
 
 
@@ -45949,7 +46031,7 @@
 
 
 /***/ },
-/* 481 */
+/* 483 */
 /***/ function(module, exports) {
 
 	/*
@@ -46005,7 +46087,7 @@
 
 
 /***/ },
-/* 482 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
