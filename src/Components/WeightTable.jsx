@@ -1,33 +1,34 @@
+import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
+
+import AddingEntryInterface from './AddingEntryInterface.jsx';
 
 const WeightTable = React.createClass({
 	getInitialState: function() {
 		return ({
-			userInput: ''
+			addingEntry: false
 		})
 	},
-	handleChange: function(e) {
+	startAdding: function() {
 		this.setState({
-			userInput: e.target.value
+			addingEntry: true
 		})
 	},
-	handleClick: function() {
+	stopAdding: function() {
 		this.setState({
-			userInput: ''
+			addingEntry: false
 		})
-
-		this.props.updateEntries(this.state.userInput)
 	},
 	render: function() {
 		return (
 			<div className='weight-table'>
+				<h1>Weight Table</h1>
 				{this.props.entries.map(function(item, i) {
 					return (
 						<div key={i}>{item}</div>
 					)
 				})}
-				<input type='text' value={this.state.userInput} onChange={this.handleChange} />
-				<button onClick={this.handleClick}>Submit</button>
+				{this.state.addingEntry ? <AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> : <FlatButton onTouchTap={this.startAdding} label="Add Entry" primary={true} />}
 			</div>
 		)
 	}
