@@ -3,6 +3,7 @@ import { Router, Route, IndexLink, IndexRoute, hashHistory, browserHistory } fro
 
 import Layout from './Layout.jsx';
 import Landing from './Landing.jsx';
+import Weight from './Weight.jsx';
 
 const App = React.createClass({
 	render: function() {
@@ -10,6 +11,7 @@ const App = React.createClass({
 			<Router history={hashHistory}>
 				<Route path='/' component={Layout}>
 					<IndexRoute component={Landing} />
+					<Route path='/weight' component={Weight} />
 				</Route>
 			</Router>
 		)
