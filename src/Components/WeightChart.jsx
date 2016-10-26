@@ -7,7 +7,7 @@ const Weight = React.createClass({
 				<h1>Weight Chart</h1>
 				{this.props.entries.map(function(item, i) {
 					return (
-						<div key={i}>{item}</div>
+						<div key={i}>{item.weight}</div>
 					)
 				})}
 			</div>

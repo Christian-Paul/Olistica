@@ -31,11 +31,11 @@ const WeightTable = React.createClass({
 						</tr>
 					</thead>
 					<tbody>
-					{this.props.entries.map(function(item, i) {
+					{this.props.entries.map(function(entry, i) {
 						return (
 							<tr key={i}>
-								<td>{i}</td>
-								<td>{item}</td>
+								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
+								<td>{entry.weight}</td>
 							</tr>
 						)
 					})}

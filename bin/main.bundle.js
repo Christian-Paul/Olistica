@@ -45657,7 +45657,13 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				entries: [20, 23]
+				entries: [{
+					date: new Date(2016, 6, 28, 14, 39, 7),
+					weight: 150
+				}, {
+					date: new Date(2016, 7, 23, 14, 39, 7),
+					weight: 155
+				}]
 			};
 		},
 		updateEntries: function updateEntries(userInput) {
@@ -45761,19 +45767,19 @@
 					_react2.default.createElement(
 						'tbody',
 						null,
-						this.props.entries.map(function (item, i) {
+						this.props.entries.map(function (entry, i) {
 							return _react2.default.createElement(
 								'tr',
 								{ key: i },
 								_react2.default.createElement(
 									'td',
 									null,
-									i
+									entry.date.getMonth() + 1 + '/' + entry.date.getDate() + '/' + entry.date.getFullYear()
 								),
 								_react2.default.createElement(
 									'td',
 									null,
-									item
+									entry.weight
 								)
 							);
 						})
@@ -45818,7 +45824,7 @@
 					return _react2.default.createElement(
 						'div',
 						{ key: i },
-						item
+						item.weight
 					);
 				})
 			);
@@ -46571,22 +46577,33 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				userInput: '',
+				weight: '',
+				date: new Date(),
 				errorMessage: ''
 			};
 		},
-		handleChange: function handleChange(e) {
+		handleWeightInput: function handleWeightInput(e) {
 			this.setState({
-				userInput: e.target.value
+				weight: e.target.value
+			});
+		},
+		handleDateInput: function handleDateInput(n, newDate) {
+			this.setState({
+				date: newDate
 			});
 		},
 		handleSubmit: function handleSubmit() {
-			var input = this.state.userInput;
-			var inputNumber = Number(input);
+			var weight = this.state.weight;
+			var weightNumber = Number(weight);
+			var date = this.state.date;
+			var entry = {
+				date: date,
+				weight: weight
+			};
 
 			// check if input is acceptable, update entries if it is, send error message if it isn't
-			if (Number.isInteger(inputNumber) && inputNumber > 0 && input.length > 0) {
-				this.props.updateEntries(this.state.userInput);
+			if (Number.isInteger(weightNumber) && weightNumber > 0 && weight.length > 0) {
+				this.props.updateEntries(entry);
 				this.props.stopAdding();
 			} else {
 				this.setState({
@@ -46598,8 +46615,8 @@
 			return _react2.default.createElement(
 				'div',
 				{ style: { paddingTop: '2rem', paddingBottom: '2rem' } },
-				_react2.default.createElement(_TextField2.default, { hintText: 'Weight', errorText: this.state.errorMessage, value: this.state.userInput, onChange: this.handleChange }),
-				_react2.default.createElement(_DatePicker2.default, { hintText: 'Date', defaultDate: new Date() }),
+				_react2.default.createElement(_TextField2.default, { hintText: 'Weight', errorText: this.state.errorMessage, value: this.state.weight, onChange: this.handleWeightInput }),
+				_react2.default.createElement(_DatePicker2.default, { hintText: 'Date', onChange: this.handleDateInput, defaultDate: new Date() }),
 				_react2.default.createElement(_FlatButton2.default, { onTouchTap: this.handleSubmit, label: 'Submit', primary: true }),
 				_react2.default.createElement(_FlatButton2.default, { onTouchTap: this.props.stopAdding, label: 'Cancel', primary: true })
 			);

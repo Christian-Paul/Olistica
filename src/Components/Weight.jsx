@@ -7,7 +7,16 @@ import WeightChart from './WeightChart.jsx';
 const Weight = React.createClass({
 	getInitialState: function() {
 		return ({
-			entries: [20, 23]
+			entries: [
+				{
+					date: new Date(2016, 6, 28, 14, 39, 7),
+					weight: 150
+				},
+				{
+					date: new Date(2016, 7, 23, 14, 39, 7),
+					weight: 155
+				}
+			]
 		})
 	},
 	updateEntries: function(userInput) {
