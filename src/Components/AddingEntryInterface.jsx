@@ -38,7 +38,7 @@ const AddingEntryInterface = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
+			<div style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
 				<TextField hintText="Weight" errorText={this.state.errorMessage} value={this.state.userInput} onChange={this.handleChange} />
 				<DatePicker hintText="Date" defaultDate={new Date()} />
 				<FlatButton onTouchTap={this.handleSubmit} label="Submit" primary={true} />

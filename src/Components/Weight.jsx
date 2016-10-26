@@ -21,8 +21,8 @@ const Weight = React.createClass({
 				<Paper>
 					<WeightChart entries={this.state.entries} />
 				</Paper>
-				
-				<Paper>
+
+				<Paper className='table-paper'>
 					<WeightTable updateEntries={this.updateEntries} entries={this.state.entries} />
 				</Paper>
 			</div>

@@ -21,14 +21,27 @@ const WeightTable = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='weight-table'>
+			<div className='weight-table-container'>
 				<h1>Weight Table</h1>
-				{this.props.entries.map(function(item, i) {
-					return (
-						<div key={i}>{item}</div>
-					)
-				})}
-				{this.state.addingEntry ? <AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> : <FlatButton onTouchTap={this.startAdding} label="Add Entry" primary={true} />}
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Weight</th>
+						</tr>
+					</thead>
+					<tbody>
+					{this.props.entries.map(function(item, i) {
+						return (
+							<tr key={i}>
+								<td>{i}</td>
+								<td>{item}</td>
+							</tr>
+						)
+					})}
+					</tbody>
+				</table>
+				{this.state.addingEntry ? <AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> : <FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />}
 			</div>
 		)
 	}
