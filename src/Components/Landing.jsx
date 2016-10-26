@@ -4,9 +4,6 @@ import React from 'react';
 import About from './About.jsx';
 
 const Landing = React.createClass({
-	signIn: function() {
-		//handle signin
-	},
 	render: function() {
 		return (
 			<div>
@@ -23,7 +20,7 @@ const Landing = React.createClass({
 							fontWeight: 500
 						}}
 						secondary={true} 
-						onTouchTap={this.signIn} 
+						onTouchTap={this.props.signIn} 
 					/>
 				</section>
 

@@ -24,27 +24,14 @@ const UserMenu = (props) => (
 		<MenuItem primaryText="Settings" />
 		<MenuItem primaryText="Help & feedback" />
 		<Divider />
-		<MenuItem primaryText="Sign out" />
+		<MenuItem primaryText="Sign out" onTouchTap={props.signOut} />
     </IconMenu>
 )
 
 const Navbar = React.createClass({
 	getInitialState: function() {
 		return ({
-			signedIn: false,
 			dockOpen: false
-		})
-	},
-	signIn: function() {
-		this.setState({
-			signedIn: true
-		})
-		// send request to server
-	},
-	signOut: function() {
-		// handle sign out
-		this.setState({
-			signedIn: false
 		})
 	},
 	closeDock: function() {
@@ -66,9 +53,9 @@ const Navbar = React.createClass({
 					titleStyle={{cursor: 'default'}}
 					iconElementLeft={<IconButton><NavigationMenu /></IconButton>}
 					onLeftIconButtonTouchTap={this.toggleDock}
-					showMenuIconButton={this.state.signedIn}
+					showMenuIconButton={this.props.userIsAuthenticated}
 					iconElementRight={
-						this.state.signedIn ? <UserMenu /> : <FlatButton label="Sign in" secondary={true} onTouchTap={this.signIn} />
+						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />
 					}
 				/>
 				<Drawer

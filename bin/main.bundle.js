@@ -10142,7 +10142,7 @@
 							fontWeight: 500
 						},
 						secondary: true,
-						onTouchTap: this.signIn
+						onTouchTap: this.props.signIn
 					})
 				),
 				_react2.default.createElement(
@@ -33642,15 +33642,48 @@
 	var Layout = _react2.default.createClass({
 		displayName: 'Layout',
 
+		getInitialState: function getInitialState() {
+			return {
+				userIsAuthenticated: false,
+				userName: false,
+				userId: false
+			};
+		},
+		signIn: function signIn() {
+			this.setState({
+				userIsAuthenticated: true,
+				userName: 'Socrates',
+				userId: 1234
+			});
+		},
+		signOut: function signOut() {
+			this.setState({
+				userIsAuthenticated: false,
+				userName: false,
+				userId: false
+			});
+		},
 		render: function render() {
+			var self = this;
+			// Use react helper methods to pass state to arbitrary child component
+			var children = _react2.default.Children.map(this.props.children, function (child) {
+				return _react2.default.cloneElement(child, {
+					signIn: self.signIn,
+					signOut: self.signOut,
+					userIsAuthenticated: self.state.userIsAuthenticated,
+					userName: self.state.userName,
+					userId: self.state.userId
+				});
+			});
+
 			return _react2.default.createElement(
 				_MuiThemeProvider2.default,
 				{ muiTheme: muiTheme },
 				_react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_Navbar2.default, null),
-					this.props.children
+					_react2.default.createElement(_Navbar2.default, { signIn: this.signIn, signOut: this.signOut, userIsAuthenticated: this.state.userIsAuthenticated }),
+					children
 				)
 			);
 		}
@@ -38770,7 +38803,7 @@
 			_react2.default.createElement(_MenuItem2.default, { primaryText: 'Settings' }),
 			_react2.default.createElement(_MenuItem2.default, { primaryText: 'Help & feedback' }),
 			_react2.default.createElement(_Divider2.default, null),
-			_react2.default.createElement(_MenuItem2.default, { primaryText: 'Sign out' })
+			_react2.default.createElement(_MenuItem2.default, { primaryText: 'Sign out', onTouchTap: props.signOut })
 		);
 	};
 
@@ -38779,21 +38812,8 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				signedIn: false,
 				dockOpen: false
 			};
-		},
-		signIn: function signIn() {
-			this.setState({
-				signedIn: true
-			});
-			// send request to server
-		},
-		signOut: function signOut() {
-			// handle sign out
-			this.setState({
-				signedIn: false
-			});
 		},
 		closeDock: function closeDock() {
 			this.setState({ dockOpen: false });
@@ -38821,8 +38841,8 @@
 						_react2.default.createElement(_menu2.default, null)
 					),
 					onLeftIconButtonTouchTap: this.toggleDock,
-					showMenuIconButton: this.state.signedIn,
-					iconElementRight: this.state.signedIn ? _react2.default.createElement(UserMenu, null) : _react2.default.createElement(_FlatButton2.default, { label: 'Sign in', secondary: true, onTouchTap: this.signIn })
+					showMenuIconButton: this.props.userIsAuthenticated,
+					iconElementRight: this.props.userIsAuthenticated ? _react2.default.createElement(UserMenu, { signOut: this.props.signOut }) : _react2.default.createElement(_FlatButton2.default, { label: 'Sign in', secondary: true, onTouchTap: this.props.signIn })
 				}),
 				_react2.default.createElement(
 					_Drawer2.default,
@@ -45584,9 +45604,6 @@
 	var Landing = _react2.default.createClass({
 		displayName: 'Landing',
 
-		signIn: function signIn() {
-			//handle signin
-		},
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
@@ -45614,7 +45631,7 @@
 							fontWeight: 500
 						},
 						secondary: true,
-						onTouchTap: this.signIn
+						onTouchTap: this.props.signIn
 					})
 				),
 				_react2.default.createElement(_About2.default, null)

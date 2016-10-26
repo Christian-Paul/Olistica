@@ -93,7 +93,7 @@ const About = React.createClass({
 							fontWeight: 500
 						}}
 						secondary={true} 
-						onTouchTap={this.signIn} 
+						onTouchTap={this.props.signIn} 
 					/>
 
 				</section>
