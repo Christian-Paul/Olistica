@@ -11,30 +11,23 @@ const AddingEntryInterface = React.createClass({
 		})
 	},
 	handleChange: function(e) {
-		// check if input is acceptable, send error message if it isn't
-		var input = e.target.value;
+		this.setState({
+			userInput: e.target.value
+		})
+	},
+	handleSubmit: function() {
+		var input = this.state.userInput;
 		var inputNumber = Number(input);
 
-		if(Number.isInteger(inputNumber) && inputNumber > 0 || input.length === 0) {
-			this.setState({
-				userInput: input,
-				errorMessage: ''
-			})
+		// check if input is acceptable, update entries if it is, send error message if it isn't
+		if(Number.isInteger(inputNumber) && inputNumber > 0 && input.length > 0) {
+			this.props.updateEntries(this.state.userInput);
+			this.props.stopAdding();
 		} else {
 			this.setState({
-				userInput: input,
 				errorMessage: 'Must be a positive integer'
 			})
 		}
-	},
-	handleSubmit: function() {
-		this.props.updateEntries(this.state.userInput);
-
-		this.setState({
-			userInput: ''
-		});
-
-		this.props.stopAdding();
 	},
 	render: function() {
 		return (
