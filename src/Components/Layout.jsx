@@ -25,6 +25,8 @@ const Layout = React.createClass({
 			userName: 'Socrates',
 			userId: 1234
 		});
+
+		this.context.router.push('/weight');
 	},
 	signOut: function() {
 		this.setState({
@@ -32,6 +34,8 @@ const Layout = React.createClass({
 			userName: false,
 			userId: false
 		});
+
+		this.context.router.push('/intro');
 	},
 	render: function() {
 		var self = this;
@@ -56,5 +60,9 @@ const Layout = React.createClass({
 		)
 	}
 });
+
+Layout.contextTypes = {
+	router: React.PropTypes.object
+};
 
 export default Layout

@@ -92,6 +92,10 @@
 
 	var _About2 = _interopRequireDefault(_About);
 
+	var _Intro = __webpack_require__(512);
+
+	var _Intro2 = _interopRequireDefault(_Intro);
+
 	var _Layout = __webpack_require__(373);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
@@ -117,6 +121,7 @@
 					_reactRouter.Route,
 					{ path: '/', component: _Layout2.default },
 					_react2.default.createElement(_reactRouter.IndexRoute, { component: _Landing2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: '/intro', component: _Intro2.default }),
 					_react2.default.createElement(_reactRouter.Route, { path: '/weight', component: _Weight2.default }),
 					_react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default })
 				)
@@ -33655,6 +33660,8 @@
 				userName: 'Socrates',
 				userId: 1234
 			});
+
+			this.context.router.push('/weight');
 		},
 		signOut: function signOut() {
 			this.setState({
@@ -33662,6 +33669,8 @@
 				userName: false,
 				userId: false
 			});
+
+			this.context.router.push('/intro');
 		},
 		render: function render() {
 			var self = this;
@@ -33688,6 +33697,10 @@
 			);
 		}
 	});
+
+	Layout.contextTypes = {
+		router: _react2.default.PropTypes.object
+	};
 
 	exports.default = Layout;
 
@@ -45595,49 +45608,33 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _About = __webpack_require__(98);
-
-	var _About2 = _interopRequireDefault(_About);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Landing = _react2.default.createClass({
 		displayName: 'Landing',
 
+		componentDidMount: function componentDidMount() {
+			// upon initially loading index route, check if user is signed in
+			// if they are redirect to a module
+			// otherwise, redirect to into page
+			if (this.props.userIsAuthenticated) {
+				this.context.router.push('/weight');
+			} else {
+				this.context.router.push('/intro');
+			}
+		},
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(
-					'section',
-					{ className: 'landing' },
-					_react2.default.createElement(
-						'h1',
-						{ className: 'landing-title' },
-						'OLISTICA'
-					),
-					_react2.default.createElement(
-						'h3',
-						{ className: 'landing-subtitle' },
-						'That which is measured improves'
-					),
-					_react2.default.createElement(_RaisedButton2.default, {
-						label: 'Sign in',
-						style: {
-							height: 50,
-							width: 120
-						},
-						labelStyle: {
-							fontWeight: 500
-						},
-						secondary: true,
-						onTouchTap: this.props.signIn
-					})
-				),
-				_react2.default.createElement(_About2.default, null)
+				'Please wait...'
 			);
 		}
 	});
+
+	Landing.contextTypes = {
+		router: _react2.default.PropTypes.object
+	};
 
 	exports.default = Landing;
 
@@ -51498,6 +51495,70 @@
 
 	exports.default = TextFieldUnderline;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 512 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _RaisedButton = __webpack_require__(365);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _About = __webpack_require__(98);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Intro = _react2.default.createClass({
+		displayName: 'Intro',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'section',
+					{ className: 'landing' },
+					_react2.default.createElement(
+						'h1',
+						{ className: 'landing-title' },
+						'OLISTICA'
+					),
+					_react2.default.createElement(
+						'h3',
+						{ className: 'landing-subtitle' },
+						'That which is measured improves'
+					),
+					_react2.default.createElement(_RaisedButton2.default, {
+						label: 'Sign in',
+						style: {
+							height: 50,
+							width: 120
+						},
+						labelStyle: {
+							fontWeight: 500
+						},
+						secondary: true,
+						onTouchTap: this.props.signIn
+					})
+				),
+				_react2.default.createElement(_About2.default, null)
+			);
+		}
+	});
+
+	exports.default = Intro;
 
 /***/ }
 /******/ ]);

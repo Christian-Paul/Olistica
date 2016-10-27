@@ -1,33 +1,26 @@
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
-import About from './About.jsx';
-
 const Landing = React.createClass({
+	componentDidMount: function() {
+		// upon initially loading index route, check if user is signed in
+		// if they are redirect to a module
+		// otherwise, redirect to into page
+		if(this.props.userIsAuthenticated) {
+			this.context.router.push('/weight');
+		} else {
+			this.context.router.push('/intro');
+		}
+	},
 	render: function() {
 		return (
-			<div>
-				<section className='landing'>
-					<h1 className='landing-title'>OLISTICA</h1>
-					<h3 className='landing-subtitle'>That which is measured improves</h3>
-					<RaisedButton 
-						label="Sign in"
-						style={{
-							height: 50,
-							width: 120
-						}}
-						labelStyle={{
-							fontWeight: 500
-						}}
-						secondary={true} 
-						onTouchTap={this.props.signIn} 
-					/>
-				</section>
-
-				<About />
-			</div>
+			<div>Please wait...</div>
 		)
 	}
 });
+
+Landing.contextTypes = {
+	router: React.PropTypes.object
+};
 
 export default Landing
