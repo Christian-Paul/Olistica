@@ -33665,7 +33665,7 @@
 						onTouchTap: this.props.signIn
 					})
 				),
-				_react2.default.createElement(_About2.default, null)
+				_react2.default.createElement(_About2.default, { signIn: this.props.signIn })
 			);
 		}
 	});

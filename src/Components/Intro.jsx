@@ -24,7 +24,7 @@ const Intro = React.createClass({
 					/>
 				</section>
 
-				<About />
+				<About signIn={this.props.signIn} />
 			</div>
 		)
 	}
