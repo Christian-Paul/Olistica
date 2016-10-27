@@ -29,7 +29,8 @@ app.listen(port, function(req, res) {
 	console.log('With a change..');
 })
 
-// sends index page for react to build off of; all other routes are APIs to support the react routes
-app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/src/index.html');
+// React Router browser history requires every get route to serve the index.html file in case a user
+// refreshes on a page or starts using the app from any non-index route
+app.get('*', function(req, res) {
+	res.sendFile(path.resolve(__dirname, 'src', 'index.html'))
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexLink, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import { Router, Route, IndexLink, IndexRoute, browserHistory } from 'react-router';
 
 import About from './About.jsx';
 import Intro from './Intro.jsx';
@@ -10,7 +10,7 @@ import Weight from './Weight.jsx';
 const App = React.createClass({
 	render: function() {
 		return (
-			<Router history={hashHistory}>
+			<Router history={browserHistory}>
 				<Route path='/' component={Layout}>
 					<IndexRoute component={Landing} />
 					<Route path='/intro' component={Intro} />
