@@ -1,4 +1,3 @@
-import Paper from 'material-ui/Paper';
 import React from 'react';
 
 import WeightTable from './WeightTable.jsx';
@@ -27,13 +26,11 @@ const Weight = React.createClass({
 	render: function() {
 		return (
 			<div className='weight'>
-				<Paper>
+				<h1 className='module-title'>Weight Tracker</h1>
+				<div className='paper-container'>
 					<WeightChart entries={this.state.entries} />
-				</Paper>
-
-				<Paper className='table-paper'>
 					<WeightTable updateEntries={this.updateEntries} entries={this.state.entries} />
-				</Paper>
+				</div>
 			</div>
 		)
 	}

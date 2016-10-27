@@ -1,3 +1,4 @@
+import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
 
@@ -21,8 +22,7 @@ const WeightTable = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='weight-table-container'>
-				<h1>Weight Table</h1>
+			<Paper className='table-paper'>
 				<table>
 					<thead>
 						<tr>
@@ -42,7 +42,7 @@ const WeightTable = React.createClass({
 					</tbody>
 				</table>
 				{this.state.addingEntry ? <AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> : <FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />}
-			</div>
+			</Paper>
 		)
 	}
 })

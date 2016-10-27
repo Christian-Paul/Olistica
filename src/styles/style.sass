@@ -1,6 +1,8 @@
-$primary-color: #00bcd4
-$primary-dark: #0097A7
-$secondary-color: #f44336
+@import 'palette';
+
+@import 'about';
+@import 'landing';
+@import 'weight';
 
 html, body
 	margin: 0
@@ -12,111 +14,3 @@ html, body
 
 	a
 		text-decoration: none
-
-	.landing
-		width: 100%
-		height: 85vh
-		background-color: $primary-color
-		color: #fff
-		padding-top: 64px
-		text-align: center
-
-		.landing-title
-			font-family: 'Anton', Helvetica, Arial
-			margin-top: 4rem
-			margin-bottom: 0.25rem
-			font-size: 10rem
-			font-weight: normal
-			letter-spacing: -0.4px
-			cursor: default
-
-		.landing-subtitle
-			margin: 0
-			font-size: 2rem
-			font-weight: 300
-			cursor: default
-			margin-bottom: 4rem
-
-	.github-source
-		color: $secondary-color
-		text-decoration: none
-
-	.project-details-section
-		padding-top: 3rem
-		padding-bottom: 7rem
-		text-align: center
-
-		h1
-			font-size: 3rem
-
-	.biography-section
-		padding-top: 3rem
-		padding-bottom: 6rem
-		display: flex
-		flex-direction: column
-		align-items: center
-		background-color: #E0E0E0
-
-		.bio-title
-			text-align: center
-			font-size: 2rem
-
-		.bios
-			display: flex
-			flex-direction: row
-			width: 90vw
-
-			.bio
-				width: 100%
-				text-align: center
-
-				.person-name
-					font-size: 2rem
-					font-weight: 300
-
-				img
-					border-radius: 50%
-
-			.bio + .bio
-				padding-left: 5vw
-
-	.weight
-		padding-top: 64px
-
-		.table-paper
-			width: 80vw
-			margin: 0 auto
-
-			.weight-table-container
-				text-align: center
-
-				h1
-					padding-top: 2rem
-
-				table
-					margin: 0 auto
-					width: 80%
-					border-collapse: collapse
-
-					th, td
-						border: 1px solid #000
-
-
-	footer
-		height: 4rem
-		padding-left: 5vw
-		padding-right: 5vw
-		text-align: center
-		display: flex
-		align-items: center
-		justify-content: space-between
-		background-color: #b8b8b8
-		color: #212121
-
-		a
-			color: #212121
-			text-decoration: none
-			transition: color 250ms ease
-
-			&:hover
-				color: #000
