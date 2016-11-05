@@ -14,6 +14,10 @@ const Weight = React.createClass({
 				{
 					date: new Date(2016, 7, 23, 14, 39, 7),
 					weight: 155
+				},
+				{
+					date: new Date(2016, 8, 23, 14, 39, 7),
+					weight: 157
 				}
 			]
 		})
