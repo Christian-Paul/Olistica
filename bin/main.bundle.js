@@ -45733,22 +45733,22 @@
 			return {
 				entries: [{
 					date: new Date(2016, 6, 28, 14, 39, 7),
-					weight: 150
+					weight: '150.00'
 				}, {
 					date: new Date(2016, 7, 23, 14, 39, 7),
-					weight: 155
+					weight: '155.00'
 				}, {
 					date: new Date(2016, 7, 26, 14, 39, 7),
-					weight: 155
+					weight: '155.00'
 				}, {
 					date: new Date(2016, 7, 29, 14, 39, 7),
-					weight: 156
+					weight: '156.00'
 				}, {
 					date: new Date(2016, 8, 3, 14, 39, 7),
-					weight: 158
+					weight: '158.00'
 				}, {
 					date: new Date(2016, 8, 10, 14, 39, 7),
-					weight: 160
+					weight: '160.00'
 				}]
 			};
 		},
@@ -45935,18 +45935,20 @@
 			var weight = this.state.weight;
 			var weightNumber = Number(weight);
 			var date = this.state.date;
-			var entry = {
-				date: date,
-				weight: weight
-			};
 
 			// check if input is acceptable, update entries if it is, send error message if it isn't
-			if (Number.isInteger(weightNumber) && weightNumber > 0 && weight.length > 0) {
+			if (weight.length > 0 && typeof weightNumber === 'number' && isFinite(weightNumber) && weightNumber > 0) {
+
+				var entry = {
+					date: date,
+					weight: weightNumber.toFixed(2)
+				};
+
 				this.props.updateEntries(entry);
 				this.props.stopAdding();
 			} else {
 				this.setState({
-					errorMessage: 'Must be a positive integer'
+					errorMessage: 'Must be a positive number'
 				});
 			}
 		},
@@ -50848,7 +50850,7 @@
 
 		render: function render() {
 			var chartData = this.props.entries.map(function (entry) {
-				return [entry.date, entry.weight];
+				return [entry.date, Number(entry.weight)];
 			});
 
 			return _react2.default.createElement(

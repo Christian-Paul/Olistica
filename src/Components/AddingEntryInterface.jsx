@@ -25,18 +25,20 @@ const AddingEntryInterface = React.createClass({
 		var weight = this.state.weight;
 		var weightNumber = Number(weight);
 		var date = this.state.date; 
-		var entry = {
-			date: date,
-			weight: weight
-		}
 
 		// check if input is acceptable, update entries if it is, send error message if it isn't
-		if(Number.isInteger(weightNumber) && weightNumber > 0 && weight.length > 0) {
+		if(weight.length > 0 && typeof(weightNumber) === 'number' && isFinite(weightNumber) && weightNumber > 0) {
+
+			var entry = {
+				date: date,
+				weight: weightNumber.toFixed(2)
+			}
+
 			this.props.updateEntries(entry);
 			this.props.stopAdding();
 		} else {
 			this.setState({
-				errorMessage: 'Must be a positive integer'
+				errorMessage: 'Must be a positive number'
 			})
 		}
 	},

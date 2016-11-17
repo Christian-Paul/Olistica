@@ -4,7 +4,7 @@ import React from 'react';
 
 const Weight = React.createClass({
 	render: function() {
-		var chartData = this.props.entries.map((entry) => [entry.date, entry.weight]);
+		var chartData = this.props.entries.map((entry) => [entry.date, Number(entry.weight)]);
 
 		return (
 			<Paper className='chart-paper'>
