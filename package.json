@@ -41,6 +41,7 @@
     "react": "^15.3.2",
     "react-chartjs": "^0.8.0",
     "react-dom": "^15.3.2",
+    "react-google-charts": "^1.2.1",
     "react-onclickoutside": "^5.7.0",
     "react-router": "^2.8.1",
     "react-tap-event-plugin": "^1.0.0"
