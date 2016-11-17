@@ -45830,6 +45830,11 @@
 				_Paper2.default,
 				{ className: 'table-paper' },
 				_react2.default.createElement(
+					'h3',
+					{ className: 'table-title' },
+					'Weight Table'
+				),
+				_react2.default.createElement(
 					'table',
 					null,
 					_react2.default.createElement(
@@ -50845,37 +50850,40 @@
 			var chartData = this.props.entries.map(function (entry) {
 				return [entry.date, entry.weight];
 			});
+
 			return _react2.default.createElement(
 				_Paper2.default,
 				{ className: 'chart-paper' },
 				_react2.default.createElement(
 					'div',
-					{ className: "my-pretty-chart-container" },
+					{ className: 'my-pretty-chart-container' },
 					_react2.default.createElement(_reactGoogleCharts.Chart, {
 						chartType: 'LineChart',
 						data: [['Date', 'Weight']].concat(chartData),
-						options: {},
+						options: {
+							title: 'Weight Chart',
+							titleTextStyle: {
+								fontName: 'Roboto',
+								fontSize: 30,
+								bold: false
+							},
+							fontName: 'Roboto',
+							legend: {
+								position: 'none'
+							},
+							tooltip: {
+								textStyle: {
+									bold: false
+								}
+							},
+							chartArea: {
+								left: '18%'
+							}
+						},
 						graph_id: 'LineChart',
 						width: '100%',
 						height: '400px',
 						legend_toggle: true
-					})
-				),
-				_react2.default.createElement(
-					'div',
-					{ style: { display: 'none' } },
-					this.props.entries.map(function (entry, i) {
-						// here's the data you'll need to make the chart
-
-						var date = entry.date.getMonth() + 1 + '/' + entry.date.getDate() + '/' + entry.date.getFullYear();
-						return _react2.default.createElement(
-							'div',
-							{ key: i },
-							'Date: ',
-							date,
-							' Weight: ',
-							entry.weight
-						);
 					})
 				)
 			);
@@ -58070,7 +58078,7 @@
 
 
 	// module
-	exports.push([module.id, ".project-details-section {\n  padding-top: 3rem;\n  padding-bottom: 7rem;\n  text-align: center; }\n  .project-details-section .github-source {\n    color: #f44336;\n    text-decoration: none; }\n  .project-details-section h1 {\n    font-size: 3rem; }\n  .project-details-section p {\n    margin: 0 auto;\n    width: 70vw; }\n\n.biography-section {\n  padding-top: 3rem;\n  padding-bottom: 6rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #E0E0E0; }\n  .biography-section .bio-title {\n    text-align: center;\n    font-size: 2rem; }\n  .biography-section .bios {\n    display: flex;\n    flex-direction: row;\n    width: 90vw; }\n    .biography-section .bios .bio {\n      width: 100%;\n      text-align: center; }\n      .biography-section .bios .bio .person-name {\n        font-size: 2rem;\n        font-weight: 300; }\n      .biography-section .bios .bio img {\n        border-radius: 50%; }\n    .biography-section .bios .bio + .bio {\n      padding-left: 5vw; }\n\nfooter {\n  height: 4rem;\n  padding-left: 5vw;\n  padding-right: 5vw;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: #b8b8b8;\n  color: #212121; }\n  footer a {\n    color: #212121;\n    text-decoration: none;\n    transition: color 250ms ease; }\n    footer a:hover {\n      color: #000; }\n\n.landing {\n  width: 100%;\n  height: 85vh;\n  background-color: #00bcd4;\n  color: #fff;\n  padding-top: 64px;\n  text-align: center; }\n  .landing .landing-title {\n    font-family: 'Anton', Helvetica, Arial;\n    margin-top: 4rem;\n    margin-bottom: 0.25rem;\n    font-size: 10rem;\n    font-weight: normal;\n    letter-spacing: -0.4px;\n    cursor: default; }\n  .landing .landing-subtitle {\n    margin: 0;\n    font-size: 2rem;\n    font-weight: 300;\n    cursor: default;\n    margin-bottom: 4rem; }\n\n.weight {\n  padding-top: 64px;\n  display: flex;\n  flex-direction: column; }\n  .weight .module-title {\n    font-size: 3rem;\n    font-weight: 400;\n    padding-top: 1rem;\n    text-align: center; }\n  .weight .paper-container {\n    display: flex;\n    align-items: flex-start; }\n    .weight .paper-container .chart-paper {\n      width: 50vw;\n      height: 30rem;\n      margin: 0 auto;\n      text-align: center;\n      padding-top: 3rem; }\n    .weight .paper-container .table-paper {\n      padding-top: 3rem;\n      width: 30vw;\n      margin: 0 auto;\n      text-align: center;\n      display: inline-block; }\n      .weight .paper-container .table-paper table {\n        margin: 0 auto;\n        width: 80%;\n        border-collapse: collapse; }\n        .weight .paper-container .table-paper table th, .weight .paper-container .table-paper table td {\n          border: 1px solid #000; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', Helvetica, Arial;\n  background-color: #f5f5f5;\n  font-weight: 300;\n  -webkit-font-smoothing: antialiased; }\n  html a, body a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, ".project-details-section {\n  padding-top: 3rem;\n  padding-bottom: 7rem;\n  text-align: center; }\n  .project-details-section .github-source {\n    color: #f44336;\n    text-decoration: none; }\n  .project-details-section h1 {\n    font-size: 3rem; }\n  .project-details-section p {\n    margin: 0 auto;\n    width: 70vw; }\n\n.biography-section {\n  padding-top: 3rem;\n  padding-bottom: 6rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #E0E0E0; }\n  .biography-section .bio-title {\n    text-align: center;\n    font-size: 2rem; }\n  .biography-section .bios {\n    display: flex;\n    flex-direction: row;\n    width: 90vw; }\n    .biography-section .bios .bio {\n      width: 100%;\n      text-align: center; }\n      .biography-section .bios .bio .person-name {\n        font-size: 2rem;\n        font-weight: 300; }\n      .biography-section .bios .bio img {\n        border-radius: 50%; }\n    .biography-section .bios .bio + .bio {\n      padding-left: 5vw; }\n\nfooter {\n  height: 4rem;\n  padding-left: 5vw;\n  padding-right: 5vw;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: #b8b8b8;\n  color: #212121; }\n  footer a {\n    color: #212121;\n    text-decoration: none;\n    transition: color 250ms ease; }\n    footer a:hover {\n      color: #000; }\n\n.landing {\n  width: 100%;\n  height: 85vh;\n  background-color: #00bcd4;\n  color: #fff;\n  padding-top: 64px;\n  text-align: center; }\n  .landing .landing-title {\n    font-family: 'Anton', Helvetica, Arial;\n    margin-top: 4rem;\n    margin-bottom: 0.25rem;\n    font-size: 10rem;\n    font-weight: normal;\n    letter-spacing: -0.4px;\n    cursor: default; }\n  .landing .landing-subtitle {\n    margin: 0;\n    font-size: 2rem;\n    font-weight: 300;\n    cursor: default;\n    margin-bottom: 4rem; }\n\n.weight {\n  padding-top: 64px;\n  display: flex;\n  flex-direction: column; }\n  .weight .module-title {\n    font-size: 3rem;\n    font-weight: 400;\n    padding-top: 1rem;\n    text-align: center; }\n  .weight .paper-container {\n    display: flex;\n    align-items: flex-start; }\n    .weight .paper-container .chart-paper {\n      width: 50vw;\n      height: 30rem;\n      margin: 0 auto;\n      text-align: center;\n      display: flex;\n      align-items: center; }\n      .weight .paper-container .chart-paper .my-pretty-chart-container {\n        width: 100%; }\n    .weight .paper-container .table-paper {\n      width: 30vw;\n      margin: 0 auto;\n      text-align: center;\n      display: inline-block; }\n      .weight .paper-container .table-paper .table-title {\n        text-align: left;\n        width: 80%;\n        margin: 0 auto;\n        margin-top: 2rem;\n        margin-bottom: 1rem;\n        font-size: 30px;\n        font-weight: 300;\n        color: rgba(0, 0, 0, 0.870588); }\n      .weight .paper-container .table-paper table {\n        margin: 0 auto;\n        width: 80%;\n        border-collapse: collapse; }\n        .weight .paper-container .table-paper table th, .weight .paper-container .table-paper table td {\n          border: 1px solid #000; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', Helvetica, Arial;\n  background-color: #f5f5f5;\n  font-weight: 300;\n  -webkit-font-smoothing: antialiased; }\n  html a, body a {\n    text-decoration: none; }\n", ""]);
 
 	// exports
 

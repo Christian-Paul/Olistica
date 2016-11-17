@@ -23,6 +23,7 @@ const WeightTable = React.createClass({
 	render: function() {
 		return (
 			<Paper className='table-paper'>
+				<h3 className='table-title'>Weight Table</h3>
 				<table>
 					<thead>
 						<tr>
