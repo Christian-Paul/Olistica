@@ -50,7 +50,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _reactTapEventPlugin = __webpack_require__(513);
+	var _reactTapEventPlugin = __webpack_require__(518);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
@@ -62,7 +62,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	__webpack_require__(519);
+	__webpack_require__(524);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -108,9 +108,13 @@
 
 	var _Weight2 = _interopRequireDefault(_Weight);
 
-	var _LiftTracker = __webpack_require__(523);
+	var _WorkoutTracker = __webpack_require__(513);
 
-	var _LiftTracker2 = _interopRequireDefault(_LiftTracker);
+	var _WorkoutTracker2 = _interopRequireDefault(_WorkoutTracker);
+
+	var _ExerciseView = __webpack_require__(517);
+
+	var _ExerciseView2 = _interopRequireDefault(_ExerciseView);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -127,7 +131,8 @@
 					_react2.default.createElement(_reactRouter.IndexRoute, { component: _Landing2.default }),
 					_react2.default.createElement(_reactRouter.Route, { path: '/intro', component: _Intro2.default }),
 					_react2.default.createElement(_reactRouter.Route, { path: '/weight', component: _Weight2.default }),
-					_react2.default.createElement(_reactRouter.Route, { path: '/lift-tracker', component: _LiftTracker2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: '/workout-tracker', component: _WorkoutTracker2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: '/exercise', component: _ExerciseView2.default }),
 					_react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default })
 				)
 			);
@@ -57694,8 +57699,430 @@
 /* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(514);
-	var defaultClickRejectionStrategy = __webpack_require__(515);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ExerciseCard = __webpack_require__(514);
+
+	var _ExerciseCard2 = _interopRequireDefault(_ExerciseCard);
+
+	var _RaisedButton = __webpack_require__(365);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var WorkoutTracker = _react2.default.createClass({
+		displayName: 'WorkoutTracker',
+
+		getInitialState: function getInitialState() {
+			return {
+				workoutTitle: 'Today',
+				exercises: [{
+					name: 'Squats',
+					sets: [{
+						reps: 6,
+						weight: 185
+					}, {
+						reps: 5,
+						weight: 225
+					}, {
+						reps: 5,
+						weight: 255
+					}]
+				}, {
+					name: 'Bench',
+					sets: [{
+						reps: 4,
+						weight: 225
+					}, {
+						reps: 5,
+						weight: 265
+					}, {
+						reps: 5,
+						weight: 315
+					}]
+				}]
+			};
+		},
+		updateEntries: function updateEntries(userInput) {
+			this.setState({
+				entries: this.state.entries.concat(userInput)
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight' },
+				_react2.default.createElement(
+					'h1',
+					null,
+					'Tracking date\'s workout'
+				),
+				this.state.exercises.map(function (exercise, i) {
+					return _react2.default.createElement(_ExerciseCard2.default, {
+						name: exercise.name,
+						sets: exercise.sets
+					});
+				}),
+				_react2.default.createElement(_RaisedButton2.default, { label: 'Add Exercise', primary: true })
+			);
+		}
+
+	});
+
+	exports.default = WorkoutTracker;
+
+/***/ },
+/* 514 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _RaisedButton = __webpack_require__(365);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _Paper = __webpack_require__(368);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _ExerciseSet = __webpack_require__(515);
+
+	var _ExerciseSet2 = _interopRequireDefault(_ExerciseSet);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ExerciseCard = _react2.default.createClass({
+		displayName: 'ExerciseCard',
+
+		getInitialState: function getInitialState() {
+			return {
+				entries: [{
+					date: new Date(2016, 6, 28, 14, 39, 7),
+					weight: '150.00'
+				}, {
+					date: new Date(2016, 7, 23, 14, 39, 7),
+					weight: '155.00'
+				}, {
+					date: new Date(2016, 7, 26, 14, 39, 7),
+					weight: '155.00'
+				}, {
+					date: new Date(2016, 7, 29, 14, 39, 7),
+					weight: '156.00'
+				}, {
+					date: new Date(2016, 8, 3, 14, 39, 7),
+					weight: '158.00'
+				}, {
+					date: new Date(2016, 8, 10, 14, 39, 7),
+					weight: '160.00'
+				}]
+			};
+		},
+		updateEntries: function updateEntries(userInput) {
+			this.setState({
+				entries: this.state.entries.concat(userInput)
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight' },
+				_react2.default.createElement(
+					_Paper2.default,
+					null,
+					_react2.default.createElement(
+						'h3',
+						null,
+						this.props.name
+					),
+					this.props.sets.map(function (set, i) {
+						return _react2.default.createElement(_ExerciseSet2.default, { reps: set.reps, weight: set.weight });
+					}),
+					_react2.default.createElement(_RaisedButton2.default, { label: 'Save', primary: true })
+				)
+			);
+		}
+
+	});
+
+	exports.default = ExerciseCard;
+
+/***/ },
+/* 515 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _TextField = __webpack_require__(496);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _close = __webpack_require__(516);
+
+	var _close2 = _interopRequireDefault(_close);
+
+	var _IconButton = __webpack_require__(99);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var styles = {
+		liftInput: {
+			width: "2rem"
+		}
+	};
+
+	var ExerciseSet = _react2.default.createClass({
+		displayName: 'ExerciseSet',
+
+		getInitialState: function getInitialState() {
+			return {
+				entries: [{
+					date: new Date(2016, 6, 28, 14, 39, 7),
+					weight: '150.00'
+				}, {
+					date: new Date(2016, 7, 23, 14, 39, 7),
+					weight: '155.00'
+				}, {
+					date: new Date(2016, 7, 26, 14, 39, 7),
+					weight: '155.00'
+				}, {
+					date: new Date(2016, 7, 29, 14, 39, 7),
+					weight: '156.00'
+				}, {
+					date: new Date(2016, 8, 3, 14, 39, 7),
+					weight: '158.00'
+				}, {
+					date: new Date(2016, 8, 10, 14, 39, 7),
+					weight: '160.00'
+				}]
+			};
+		},
+		updateEntries: function updateEntries(userInput) {
+			this.setState({
+				entries: this.state.entries.concat(userInput)
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight' },
+				_react2.default.createElement(
+					'span',
+					null,
+					_react2.default.createElement(_TextField2.default, { style: styles.liftInput, value: this.props.weight }),
+					'reps of',
+					_react2.default.createElement(_TextField2.default, { style: styles.liftInput, value: this.props.reps }),
+					' lbs',
+					_react2.default.createElement(
+						_IconButton2.default,
+						null,
+						_react2.default.createElement(_close2.default, null)
+					)
+				)
+			);
+		}
+
+	});
+
+	exports.default = ExerciseSet;
+
+/***/ },
+/* 516 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _pure = __webpack_require__(425);
+
+	var _pure2 = _interopRequireDefault(_pure);
+
+	var _SvgIcon = __webpack_require__(371);
+
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NavigationClose = function NavigationClose(props) {
+	  return _react2.default.createElement(
+	    _SvgIcon2.default,
+	    props,
+	    _react2.default.createElement('path', { d: 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' })
+	  );
+	};
+	NavigationClose = (0, _pure2.default)(NavigationClose);
+	NavigationClose.displayName = 'NavigationClose';
+	NavigationClose.muiName = 'SvgIcon';
+
+	exports.default = NavigationClose;
+
+/***/ },
+/* 517 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _RaisedButton = __webpack_require__(365);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _DatePicker = __webpack_require__(477);
+
+	var _DatePicker2 = _interopRequireDefault(_DatePicker);
+
+	var _WorkoutCard = __webpack_require__(528);
+
+	var _WorkoutCard2 = _interopRequireDefault(_WorkoutCard);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ExerciseView = _react2.default.createClass({
+		displayName: 'ExerciseView',
+
+		getInitialState: function getInitialState() {
+			return {
+				workouts: [{
+					workoutTitle: '11/17/2016',
+					exercises: [{
+						name: 'Squats',
+						sets: [{
+							reps: 6,
+							weight: 185
+						}, {
+							reps: 5,
+							weight: 225
+						}, {
+							reps: 5,
+							weight: 255
+						}]
+					}, {
+						name: 'Bench',
+						sets: [{
+							reps: 4,
+							weight: 225
+						}, {
+							reps: 5,
+							weight: 265
+						}, {
+							reps: 5,
+							weight: 315
+						}]
+					}]
+				}, {
+					workoutTitle: '12/20/2016',
+					exercises: [{
+						name: 'Curls',
+						sets: [{
+							reps: 12,
+							weight: 50
+						}, {
+							reps: 8,
+							weight: 55
+						}, {
+							reps: 5,
+							weight: 60
+						}]
+					}, {
+						name: 'Tricep Pulldowns',
+						sets: [{
+							reps: 10,
+							weight: 55
+						}, {
+							reps: 10,
+							weight: 65
+						}, {
+							reps: 12,
+							weight: 50
+						}]
+					}]
+				}]
+			};
+		},
+		updateEntries: function updateEntries(userInput) {
+			this.setState({
+				entries: this.state.entries.concat(userInput)
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'weight' },
+				_react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'span',
+						null,
+						_react2.default.createElement(
+							'span',
+							null,
+							'Track Workout For\xA0'
+						),
+						_react2.default.createElement(_DatePicker2.default, { style: { display: "inline-block" }, hintText: 'Date', defaultDate: new Date() }),
+						_react2.default.createElement(_RaisedButton2.default, { label: 'Save', primary: true })
+					),
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Workouts'
+					),
+					_react2.default.createElement(_WorkoutCard2.default, { title: this.state.workouts[0].workoutTitle, exercises: this.state.workouts[0].exercises }),
+					_react2.default.createElement(_WorkoutCard2.default, { title: this.state.workouts[1].workoutTitle, exercises: this.state.workouts[1].exercises })
+				)
+			);
+		}
+
+	});
+
+	exports.default = ExerciseView;
+
+/***/ },
+/* 518 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(519);
+	var defaultClickRejectionStrategy = __webpack_require__(520);
 
 	var alreadyInjected = false;
 
@@ -57717,14 +58144,14 @@
 	  alreadyInjected = true;
 
 	  __webpack_require__(212).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(516)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(521)(shouldRejectClick)
 	  });
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 514 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -57779,7 +58206,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 515 */
+/* 520 */
 /***/ function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -57790,7 +58217,7 @@
 
 
 /***/ },
-/* 516 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -57818,10 +58245,10 @@
 	var EventPluginUtils = __webpack_require__(214);
 	var EventPropagators = __webpack_require__(211);
 	var SyntheticUIEvent = __webpack_require__(245);
-	var TouchEventUtils = __webpack_require__(517);
+	var TouchEventUtils = __webpack_require__(522);
 	var ViewportMetrics = __webpack_require__(246);
 
-	var keyOf = __webpack_require__(518);
+	var keyOf = __webpack_require__(523);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -57966,7 +58393,7 @@
 
 
 /***/ },
-/* 517 */
+/* 522 */
 /***/ function(module, exports) {
 
 	/**
@@ -58014,7 +58441,7 @@
 
 
 /***/ },
-/* 518 */
+/* 523 */
 /***/ function(module, exports) {
 
 	/**
@@ -58054,16 +58481,16 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 519 */
+/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(520);
+	var content = __webpack_require__(525);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(522)(content, {});
+	var update = __webpack_require__(527)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -58080,21 +58507,21 @@
 	}
 
 /***/ },
-/* 520 */
+/* 525 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(521)();
+	exports = module.exports = __webpack_require__(526)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".project-details-section {\n  padding-top: 3rem;\n  padding-bottom: 7rem;\n  text-align: center; }\n  .project-details-section .github-source {\n    color: #f44336;\n    text-decoration: none; }\n  .project-details-section h1 {\n    font-size: 3rem; }\n  .project-details-section p {\n    margin: 0 auto;\n    width: 70vw; }\n\n.biography-section {\n  padding-top: 3rem;\n  padding-bottom: 6rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #E0E0E0; }\n  .biography-section .bio-title {\n    text-align: center;\n    font-size: 2rem; }\n  .biography-section .bios {\n    display: flex;\n    flex-direction: row;\n    width: 90vw; }\n    .biography-section .bios .bio {\n      width: 100%;\n      text-align: center; }\n      .biography-section .bios .bio .person-name {\n        font-size: 2rem;\n        font-weight: 300; }\n      .biography-section .bios .bio img {\n        border-radius: 50%; }\n    .biography-section .bios .bio + .bio {\n      padding-left: 5vw; }\n\nfooter {\n  height: 4rem;\n  padding-left: 5vw;\n  padding-right: 5vw;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: #b8b8b8;\n  color: #212121; }\n  footer a {\n    color: #212121;\n    text-decoration: none;\n    transition: color 250ms ease; }\n    footer a:hover {\n      color: #000; }\n\n.landing {\n  width: 100%;\n  height: 85vh;\n  background-color: #00bcd4;\n  color: #fff;\n  padding-top: 64px;\n  text-align: center; }\n  .landing .landing-title {\n    font-family: 'Anton', Helvetica, Arial;\n    margin-top: 4rem;\n    margin-bottom: 0.25rem;\n    font-size: 10rem;\n    font-weight: normal;\n    letter-spacing: -0.4px;\n    cursor: default; }\n  .landing .landing-subtitle {\n    margin: 0;\n    font-size: 2rem;\n    font-weight: 300;\n    cursor: default;\n    margin-bottom: 4rem; }\n\n.weight {\n  padding-top: 64px;\n  display: flex;\n  flex-direction: column; }\n  .weight .module-title {\n    font-size: 3rem;\n    font-weight: 400;\n    padding-top: 1rem;\n    text-align: center; }\n  .weight .paper-container {\n    display: flex;\n    align-items: flex-start; }\n    .weight .paper-container .chart-paper {\n      width: 50vw;\n      height: auto;\n      margin: 0 auto;\n      text-align: center; }\n      .weight .paper-container .chart-paper .my-pretty-chart-container {\n        margin-top: 1rem;\n        margin-bottom: 2rem;\n        width: 100%; }\n    .weight .paper-container .table-paper {\n      width: 30vw;\n      margin: 0 auto;\n      text-align: center;\n      display: inline-block; }\n      .weight .paper-container .table-paper .table-title {\n        text-align: left;\n        width: 80%;\n        margin: 0 auto;\n        margin-top: 2rem;\n        margin-bottom: 1rem;\n        font-size: 30px;\n        font-weight: 300;\n        color: rgba(0, 0, 0, 0.870588); }\n      .weight .paper-container .table-paper table {\n        margin: 0 auto;\n        width: 80%;\n        border-collapse: collapse; }\n        .weight .paper-container .table-paper table th, .weight .paper-container .table-paper table td {\n          border: 1px solid #000; }\n\n.lift-input {\n  width: 2rem; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', Helvetica, Arial;\n  background-color: #f5f5f5;\n  font-weight: 300;\n  -webkit-font-smoothing: antialiased; }\n  html a, body a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, ".project-details-section {\n  padding-top: 3rem;\n  padding-bottom: 7rem;\n  text-align: center; }\n  .project-details-section .github-source {\n    color: #f44336;\n    text-decoration: none; }\n  .project-details-section h1 {\n    font-size: 3rem; }\n  .project-details-section p {\n    margin: 0 auto;\n    width: 70vw; }\n\n.biography-section {\n  padding-top: 3rem;\n  padding-bottom: 6rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #E0E0E0; }\n  .biography-section .bio-title {\n    text-align: center;\n    font-size: 2rem; }\n  .biography-section .bios {\n    display: flex;\n    flex-direction: row;\n    width: 90vw; }\n    .biography-section .bios .bio {\n      width: 100%;\n      text-align: center; }\n      .biography-section .bios .bio .person-name {\n        font-size: 2rem;\n        font-weight: 300; }\n      .biography-section .bios .bio img {\n        border-radius: 50%; }\n    .biography-section .bios .bio + .bio {\n      padding-left: 5vw; }\n\nfooter {\n  height: 4rem;\n  padding-left: 5vw;\n  padding-right: 5vw;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: #b8b8b8;\n  color: #212121; }\n  footer a {\n    color: #212121;\n    text-decoration: none;\n    transition: color 250ms ease; }\n    footer a:hover {\n      color: #000; }\n\n.landing {\n  width: 100%;\n  height: 85vh;\n  background-color: #00bcd4;\n  color: #fff;\n  padding-top: 64px;\n  text-align: center; }\n  .landing .landing-title {\n    font-family: 'Anton', Helvetica, Arial;\n    margin-top: 4rem;\n    margin-bottom: 0.25rem;\n    font-size: 10rem;\n    font-weight: normal;\n    letter-spacing: -0.4px;\n    cursor: default; }\n  .landing .landing-subtitle {\n    margin: 0;\n    font-size: 2rem;\n    font-weight: 300;\n    cursor: default;\n    margin-bottom: 4rem; }\n\n.weight {\n  padding-top: 64px;\n  display: flex;\n  flex-direction: column; }\n  .weight .module-title {\n    font-size: 3rem;\n    font-weight: 400;\n    padding-top: 1rem;\n    text-align: center; }\n  .weight .paper-container {\n    display: flex;\n    align-items: flex-start; }\n    .weight .paper-container .chart-paper {\n      width: 50vw;\n      height: auto;\n      margin: 0 auto;\n      text-align: center; }\n      .weight .paper-container .chart-paper .my-pretty-chart-container {\n        margin-top: 1rem;\n        margin-bottom: 2rem;\n        width: 100%; }\n    .weight .paper-container .table-paper {\n      width: 30vw;\n      margin: 0 auto;\n      text-align: center;\n      display: inline-block; }\n      .weight .paper-container .table-paper .table-title {\n        text-align: left;\n        width: 80%;\n        margin: 0 auto;\n        margin-top: 2rem;\n        margin-bottom: 1rem;\n        font-size: 30px;\n        font-weight: 300;\n        color: rgba(0, 0, 0, 0.870588); }\n      .weight .paper-container .table-paper table {\n        margin: 0 auto;\n        width: 80%;\n        border-collapse: collapse; }\n        .weight .paper-container .table-paper table th, .weight .paper-container .table-paper table td {\n          border: 1px solid #000; }\n\n.lift-input {\n  width: 2rem; }\n\n.workout-card {\n  display: flex;\n  justify-content: space-around;\n  max-width: 80vw;\n  align-items: center;\n  padding-bottom: 1.5rem; }\n\n.set-list {\n  display: flex;\n  flex-direction: column; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', Helvetica, Arial;\n  background-color: #f5f5f5;\n  font-weight: 300;\n  -webkit-font-smoothing: antialiased; }\n  html a, body a {\n    text-decoration: none; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 521 */
+/* 526 */
 /***/ function(module, exports) {
 
 	/*
@@ -58150,7 +58577,7 @@
 
 
 /***/ },
-/* 522 */
+/* 527 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -58402,7 +58829,7 @@
 
 
 /***/ },
-/* 523 */
+/* 528 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58415,18 +58842,22 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _LiftCard = __webpack_require__(524);
+	var _FlatButton = __webpack_require__(445);
 
-	var _LiftCard2 = _interopRequireDefault(_LiftCard);
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(365);
+	var _Paper = __webpack_require__(368);
 
-	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _ExerciseSummary = __webpack_require__(529);
+
+	var _ExerciseSummary2 = _interopRequireDefault(_ExerciseSummary);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LiftTracker = _react2.default.createClass({
-		displayName: 'LiftTracker',
+	var WorkoutCard = _react2.default.createClass({
+		displayName: 'WorkoutCard',
 
 		getInitialState: function getInitialState() {
 			return {
@@ -58466,111 +58897,32 @@
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'weight' },
-				_react2.default.createElement(
-					'h1',
-					null,
-					'Tracking date\'s workout'
-				),
-				this.state.exercises.map(function (exercise, i) {
-					return _react2.default.createElement(_LiftCard2.default, {
-						name: exercise.name,
-						sets: exercise.sets
-					});
-				}),
-				_react2.default.createElement(_RaisedButton2.default, { label: 'Add Exercise', primary: true })
-			);
-		}
-
-	});
-
-	exports.default = LiftTracker;
-
-/***/ },
-/* 524 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _RaisedButton = __webpack_require__(365);
-
-	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
-
-	var _Paper = __webpack_require__(368);
-
-	var _Paper2 = _interopRequireDefault(_Paper);
-
-	var _LiftSet = __webpack_require__(525);
-
-	var _LiftSet2 = _interopRequireDefault(_LiftSet);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var LiftCard = _react2.default.createClass({
-		displayName: 'LiftCard',
-
-		getInitialState: function getInitialState() {
-			return {
-				entries: [{
-					date: new Date(2016, 6, 28, 14, 39, 7),
-					weight: '150.00'
-				}, {
-					date: new Date(2016, 7, 23, 14, 39, 7),
-					weight: '155.00'
-				}, {
-					date: new Date(2016, 7, 26, 14, 39, 7),
-					weight: '155.00'
-				}, {
-					date: new Date(2016, 7, 29, 14, 39, 7),
-					weight: '156.00'
-				}, {
-					date: new Date(2016, 8, 3, 14, 39, 7),
-					weight: '158.00'
-				}, {
-					date: new Date(2016, 8, 10, 14, 39, 7),
-					weight: '160.00'
-				}]
-			};
-		},
-		updateEntries: function updateEntries(userInput) {
-			this.setState({
-				entries: this.state.entries.concat(userInput)
-			});
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ className: 'weight' },
+				null,
 				_react2.default.createElement(
 					_Paper2.default,
-					null,
+					{ className: 'workout-card' },
 					_react2.default.createElement(
-						'h3',
+						'h2',
 						null,
-						this.props.name
+						this.props.title
 					),
-					this.props.sets.map(function (set, i) {
-						return _react2.default.createElement(_LiftSet2.default, { reps: set.reps, weight: set.weight });
+					this.props.exercises.map(function (exercise) {
+						return _react2.default.createElement(_ExerciseSummary2.default, {
+							name: exercise.name,
+							sets: exercise.sets
+						});
 					}),
-					_react2.default.createElement(_RaisedButton2.default, { label: 'Save', primary: true })
+					_react2.default.createElement(_FlatButton2.default, { label: 'Edit', secondary: true })
 				)
 			);
 		}
 
 	});
 
-	exports.default = LiftCard;
+	exports.default = WorkoutCard;
 
 /***/ },
-/* 525 */
+/* 529 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58583,49 +58935,38 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TextField = __webpack_require__(496);
-
-	var _TextField2 = _interopRequireDefault(_TextField);
-
-	var _close = __webpack_require__(526);
-
-	var _close2 = _interopRequireDefault(_close);
-
-	var _IconButton = __webpack_require__(99);
-
-	var _IconButton2 = _interopRequireDefault(_IconButton);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var styles = {
-		liftInput: {
-			width: "2rem"
-		}
-	};
-
-	var LiftSet = _react2.default.createClass({
-		displayName: 'LiftSet',
+	var ExerciseSummary = _react2.default.createClass({
+		displayName: 'ExerciseSummary',
 
 		getInitialState: function getInitialState() {
 			return {
-				entries: [{
-					date: new Date(2016, 6, 28, 14, 39, 7),
-					weight: '150.00'
+				workoutTitle: 'Today',
+				exercises: [{
+					name: 'Squats',
+					sets: [{
+						reps: 6,
+						weight: 185
+					}, {
+						reps: 5,
+						weight: 225
+					}, {
+						reps: 5,
+						weight: 255
+					}]
 				}, {
-					date: new Date(2016, 7, 23, 14, 39, 7),
-					weight: '155.00'
-				}, {
-					date: new Date(2016, 7, 26, 14, 39, 7),
-					weight: '155.00'
-				}, {
-					date: new Date(2016, 7, 29, 14, 39, 7),
-					weight: '156.00'
-				}, {
-					date: new Date(2016, 8, 3, 14, 39, 7),
-					weight: '158.00'
-				}, {
-					date: new Date(2016, 8, 10, 14, 39, 7),
-					weight: '160.00'
+					name: 'Bench',
+					sets: [{
+						reps: 4,
+						weight: 225
+					}, {
+						reps: 5,
+						weight: 265
+					}, {
+						reps: 5,
+						weight: 315
+					}]
 				}]
 			};
 		},
@@ -58637,63 +58978,31 @@
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'weight' },
+				{ className: 'exercise-summary' },
 				_react2.default.createElement(
-					'span',
+					'h3',
 					null,
-					_react2.default.createElement(_TextField2.default, { style: styles.liftInput, value: this.props.weight }),
-					'reps of',
-					_react2.default.createElement(_TextField2.default, { style: styles.liftInput, value: this.props.reps }),
-					' lbs',
-					_react2.default.createElement(
-						_IconButton2.default,
-						null,
-						_react2.default.createElement(_close2.default, null)
-					)
+					this.props.name
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'set-list' },
+					this.props.sets.map(function (set) {
+						return _react2.default.createElement(
+							'span',
+							null,
+							set.weight,
+							' x ',
+							set.reps
+						);
+					})
 				)
 			);
 		}
 
 	});
 
-	exports.default = LiftSet;
-
-/***/ },
-/* 526 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _pure = __webpack_require__(425);
-
-	var _pure2 = _interopRequireDefault(_pure);
-
-	var _SvgIcon = __webpack_require__(371);
-
-	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NavigationClose = function NavigationClose(props) {
-	  return _react2.default.createElement(
-	    _SvgIcon2.default,
-	    props,
-	    _react2.default.createElement('path', { d: 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' })
-	  );
-	};
-	NavigationClose = (0, _pure2.default)(NavigationClose);
-	NavigationClose.displayName = 'NavigationClose';
-	NavigationClose.muiName = 'SvgIcon';
-
-	exports.default = NavigationClose;
+	exports.default = ExerciseSummary;
 
 /***/ }
 /******/ ]);

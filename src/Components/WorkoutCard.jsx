@@ -1,8 +1,9 @@
 import React from 'react';
-import LiftCard from './LiftCard.jsx';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
+import ExerciseSummary from './ExerciseSummary.jsx'
 
-const LiftTracker = React.createClass({
+const WorkoutCard = React.createClass({
 	getInitialState: function() {
 		return ({
 			workoutTitle: 'Today',
@@ -49,19 +50,21 @@ const LiftTracker = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='weight'>
-				<h1>Tracking date's workout</h1>
-				{this.state.exercises.map(function (exercise, i) {
-					return <LiftCard
-										name={exercise.name}
-										sets={exercise.sets}
-									/>;
-				})}
-				<RaisedButton label='Add Exercise' primary={true} />
+			<div>
+        <Paper className='workout-card'>
+          <h2>{this.props.title}</h2>
+          {this.props.exercises.map(function(exercise) {
+            return <ExerciseSummary
+                      name={exercise.name}
+                      sets={exercise.sets}
+                    />
+          })}
+					<FlatButton label='Edit' secondary={true} />
+				</Paper>
 			</div>
 		)
 	}
 
 });
 
-export default LiftTracker
+export default WorkoutCard

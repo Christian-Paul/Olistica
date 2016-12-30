@@ -6,7 +6,8 @@ import Intro from './Intro.jsx';
 import Layout from './Layout.jsx';
 import Landing from './Landing.jsx';
 import Weight from './Weight.jsx';
-import LiftTracker from './LiftTracker.jsx';
+import WorkoutTracker from './WorkoutTracker.jsx';
+import ExerciseView from './ExerciseView.jsx';
 
 const App = React.createClass({
 	render: function() {
@@ -16,7 +17,8 @@ const App = React.createClass({
 					<IndexRoute component={Landing} />
 					<Route path='/intro' component={Intro} />
 					<Route path='/weight' component={Weight} />
-					<Route path='/lift-tracker' component={LiftTracker} />
+					<Route path='/workout-tracker' component={WorkoutTracker} />
+					<Route path='/exercise' component={ExerciseView} />
 					<Route path='/about' component={About} />
 				</Route>
 			</Router>

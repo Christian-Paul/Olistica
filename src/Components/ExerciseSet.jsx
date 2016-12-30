@@ -1,9 +1,16 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
-import LiftSet from './LiftSet.jsx';
+import TextField from 'material-ui/TextField';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
 
-const LiftCard = React.createClass({
+
+const styles = {
+	liftInput: {
+		width: "2rem"
+	}
+};
+
+const ExerciseSet = React.createClass({
 	getInitialState: function() {
 		return ({
 			entries: [
@@ -42,17 +49,21 @@ const LiftCard = React.createClass({
 	render: function() {
 		return (
 			<div className='weight'>
-				<Paper>
-					<h3>{ this.props.name }</h3>
-					{this.props.sets.map(function (set, i) {
-						return <LiftSet reps={set.reps} weight={set.weight} />;
-					})}
-					<RaisedButton label='Save' primary={true} />
-				</Paper>
+				<span>
+					<TextField style={styles.liftInput} value={this.props.weight} />
+
+					reps of
+
+					<TextField style={styles.liftInput} value={this.props.reps} /> lbs
+
+					<IconButton>
+						<NavigationClose  />
+					</IconButton>
+				</span>
 			</div>
 		)
 	}
 
 });
 
-export default LiftCard
+export default ExerciseSet
