@@ -44,6 +44,6 @@
     "react-google-charts": "^1.2.1",
     "react-onclickoutside": "^5.7.0",
     "react-router": "^2.8.1",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-tap-event-plugin": "^2.0.0"
   }
 }
