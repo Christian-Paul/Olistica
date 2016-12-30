@@ -18,6 +18,19 @@ if(port === 3000) {
 	};
 }
 
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
+
+var userSchema = mongoose.Schema({
+    name: String
+});
+
+var User = mongoose.model('User', userSchema);
+
 // middleware
 app.use('/bin', express.static(path.join(__dirname, 'bin')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
