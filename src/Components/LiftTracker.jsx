@@ -51,7 +51,12 @@ const LiftTracker = React.createClass({
 		return (
 			<div className='weight'>
 				<h1>Tracking date's workout</h1>
-				<LiftCard />
+				{this.state.exercises.map(function (exercise, i) {
+					return <LiftCard
+										name={exercise.name}
+										sets={exercise.sets}
+									/>;
+				})}
 				<RaisedButton label='Add Exercise' primary={true} />
 			</div>
 		)

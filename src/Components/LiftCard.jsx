@@ -43,8 +43,10 @@ const LiftCard = React.createClass({
 		return (
 			<div className='weight'>
 				<Paper>
-					<h3>Squats</h3>
-					<LiftSet />
+					<h3>{ this.props.name }</h3>
+					{this.props.sets.map(function (set, i) {
+						return <LiftSet reps={set.reps} weight={set.weight} />;
+					})}
 					<RaisedButton label='Save' primary={true} />
 				</Paper>
 			</div>
