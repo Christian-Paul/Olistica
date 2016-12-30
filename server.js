@@ -18,18 +18,13 @@ if(port === 3000) {
 	};
 }
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongoosePassword + '@ds149268.mlab.com:49268/olistica');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
+	console.log('Mongoose connected!');
 });
-
-var userSchema = mongoose.Schema({
-    name: String
-});
-
-var User = mongoose.model('User', userSchema);
 
 // middleware
 app.use('/bin', express.static(path.join(__dirname, 'bin')));
@@ -39,7 +34,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 // begin app
 app.listen(port, function(req, res) {
 	console.log('listening on 3000');
-	console.log('With a change..');
 })
 
 // React Router browser history requires every get route to serve the index.html file in case a user
