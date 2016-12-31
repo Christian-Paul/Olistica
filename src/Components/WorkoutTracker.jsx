@@ -5,53 +5,30 @@ import RaisedButton from 'material-ui/RaisedButton';
 const WorkoutTracker = React.createClass({
 	getInitialState: function() {
 		return ({
-			workoutTitle: 'Today',
-			exercises: [{
-				name: 'Squats',
-				sets: [
-					{
-						reps: 6,
-						weight: 185
-					},
-					{
-						reps: 5,
-						weight: 225
-					},
-					{
-						reps: 5,
-						weight: 255
-					}
-				]
-			},
-			{
-				name: 'Bench',
-				sets: [
-					{
-						reps: 4,
-						weight: 225
-					},
-					{
-						reps: 5,
-						weight: 265
-					},
-					{
-						reps: 5,
-						weight: 315
-					}
-				]
-			}]
+			workout: { exercises: [] }
 		})
 	},
-	updateEntries: function(userInput) {
-		this.setState({
-			entries: this.state.entries.concat(userInput)
-		})
+	componentDidMount: function() {
+		var self = this;
+		$.ajax({
+      url: "/workouts/workout/586706f39f3be421c0b24ec7",
+      success: function (data) {
+        if (!data.error) {
+					self.setState({
+						workout: data.workout
+					});
+        } else {
+          console.log("error");
+        }
+      },
+      dataType: "json"
+    });
 	},
 	render: function() {
 		return (
 			<div className='weight'>
 				<h1>Tracking date's workout</h1>
-				{this.state.exercises.map(function (exercise, i) {
+				{this.state.workout.exercises.map(function (exercise, i) {
 					return <ExerciseCard
 										name={exercise.name}
 										sets={exercise.sets}

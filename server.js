@@ -22,22 +22,16 @@ mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongooseP
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
-	console.log('Mongoose connected!');
+  console.log('connected!');
 });
 
 // middleware
 app.use('/bin', express.static(path.join(__dirname, 'bin')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(require("./controllers"));
 
 // begin app
 app.listen(port, function(req, res) {
 	console.log('listening on 3000');
-})
-
-// React Router browser history requires every get route to serve the index.html file in case a user
-// refreshes on a page or starts using the app from any non-index route
-app.get('*', function(req, res) {
-	res.sendFile(path.resolve(__dirname, 'src', 'index.html'))
 });

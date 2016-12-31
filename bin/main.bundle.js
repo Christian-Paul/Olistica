@@ -57724,37 +57724,23 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				workoutTitle: 'Today',
-				exercises: [{
-					name: 'Squats',
-					sets: [{
-						reps: 6,
-						weight: 185
-					}, {
-						reps: 5,
-						weight: 225
-					}, {
-						reps: 5,
-						weight: 255
-					}]
-				}, {
-					name: 'Bench',
-					sets: [{
-						reps: 4,
-						weight: 225
-					}, {
-						reps: 5,
-						weight: 265
-					}, {
-						reps: 5,
-						weight: 315
-					}]
-				}]
+				workout: { exercises: [] }
 			};
 		},
-		updateEntries: function updateEntries(userInput) {
-			this.setState({
-				entries: this.state.entries.concat(userInput)
+		componentDidMount: function componentDidMount() {
+			var self = this;
+			$.ajax({
+				url: "/workouts/workout/586706f39f3be421c0b24ec7",
+				success: function success(data) {
+					if (!data.error) {
+						self.setState({
+							workout: data.workout
+						});
+					} else {
+						console.log("error");
+					}
+				},
+				dataType: "json"
 			});
 		},
 		render: function render() {
@@ -57766,7 +57752,7 @@
 					null,
 					'Tracking date\'s workout'
 				),
-				this.state.exercises.map(function (exercise, i) {
+				this.state.workout.exercises.map(function (exercise, i) {
 					return _react2.default.createElement(_ExerciseCard2.default, {
 						name: exercise.name,
 						sets: exercise.sets
@@ -58022,66 +58008,23 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				workouts: [{
-					workoutTitle: '11/17/2016',
-					exercises: [{
-						name: 'Squats',
-						sets: [{
-							reps: 6,
-							weight: 185
-						}, {
-							reps: 5,
-							weight: 225
-						}, {
-							reps: 5,
-							weight: 255
-						}]
-					}, {
-						name: 'Bench',
-						sets: [{
-							reps: 4,
-							weight: 225
-						}, {
-							reps: 5,
-							weight: 265
-						}, {
-							reps: 5,
-							weight: 315
-						}]
-					}]
-				}, {
-					workoutTitle: '12/20/2016',
-					exercises: [{
-						name: 'Curls',
-						sets: [{
-							reps: 12,
-							weight: 50
-						}, {
-							reps: 8,
-							weight: 55
-						}, {
-							reps: 5,
-							weight: 60
-						}]
-					}, {
-						name: 'Tricep Pulldowns',
-						sets: [{
-							reps: 10,
-							weight: 55
-						}, {
-							reps: 10,
-							weight: 65
-						}, {
-							reps: 12,
-							weight: 50
-						}]
-					}]
-				}]
+				workouts: []
 			};
 		},
-		updateEntries: function updateEntries(userInput) {
-			this.setState({
-				entries: this.state.entries.concat(userInput)
+		componentDidMount: function componentDidMount() {
+			var self = this;
+			$.ajax({
+				url: "/workouts/summary",
+				success: function success(data) {
+					if (!data.error) {
+						self.setState({
+							workouts: data.workouts
+						});
+					} else {
+						console.log("error");
+					}
+				},
+				dataType: "json"
 			});
 		},
 		render: function render() {
@@ -58107,8 +58050,9 @@
 						null,
 						'Workouts'
 					),
-					_react2.default.createElement(_WorkoutCard2.default, { title: this.state.workouts[0].workoutTitle, exercises: this.state.workouts[0].exercises }),
-					_react2.default.createElement(_WorkoutCard2.default, { title: this.state.workouts[1].workoutTitle, exercises: this.state.workouts[1].exercises })
+					this.state.workouts.map(function (workout, i) {
+						return _react2.default.createElement(_WorkoutCard2.default, { title: workout.title, exercises: workout.exercises });
+					})
 				)
 			);
 		}

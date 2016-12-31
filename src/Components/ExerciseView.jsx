@@ -6,88 +6,24 @@ import WorkoutCard from './WorkoutCard.jsx';
 const ExerciseView = React.createClass({
 	getInitialState: function() {
 		return ({
-			workouts: [
-				{
-					workoutTitle: '11/17/2016',
-					exercises: [{
-						name: 'Squats',
-						sets: [
-							{
-								reps: 6,
-								weight: 185
-							},
-							{
-								reps: 5,
-								weight: 225
-							},
-							{
-								reps: 5,
-								weight: 255
-							}
-						]
-					},
-					{
-						name: 'Bench',
-						sets: [
-							{
-								reps: 4,
-								weight: 225
-							},
-							{
-								reps: 5,
-								weight: 265
-							},
-							{
-								reps: 5,
-								weight: 315
-							}
-						]
-					}]
-				},
-				{
-					workoutTitle: '12/20/2016',
-					exercises: [{
-						name: 'Curls',
-						sets: [
-							{
-								reps: 12,
-								weight: 50
-							},
-							{
-								reps: 8,
-								weight: 55
-							},
-							{
-								reps: 5,
-								weight: 60
-							}
-						]
-					},
-					{
-						name: 'Tricep Pulldowns',
-						sets: [
-							{
-								reps: 10,
-								weight: 55
-							},
-							{
-								reps: 10,
-								weight: 65
-							},
-							{
-								reps: 12,
-								weight: 50
-							}
-						]
-					}]
-				}
-			]
+			workouts: []
 		})
 	},
-	updateEntries: function(userInput) {
-		this.setState({
-			entries: this.state.entries.concat(userInput)
-		})
+	componentDidMount: function() {
+		var self = this;
+		$.ajax({
+      url: "/workouts/summary",
+      success: function (data) {
+        if (!data.error) {
+					self.setState({
+						workouts: data.workouts
+					});
+        } else {
+          console.log("error");
+        }
+      },
+      dataType: "json"
+    });
 	},
 	render: function() {
 		return (
@@ -101,8 +37,9 @@ const ExerciseView = React.createClass({
 						<RaisedButton label='Save' primary={true} />
 					</span>
 					<h2>Workouts</h2>
-					<WorkoutCard title={this.state.workouts[0].workoutTitle} exercises={this.state.workouts[0].exercises} />
-					<WorkoutCard title={this.state.workouts[1].workoutTitle} exercises={this.state.workouts[1].exercises} />
+					{this.state.workouts.map((workout, i) => {
+						return <WorkoutCard title={workout.title} exercises={workout.exercises} />;
+					})}
 				</div>
 			</div>
 		)
