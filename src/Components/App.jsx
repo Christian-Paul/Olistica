@@ -5,9 +5,9 @@ import About from './About.jsx';
 import Intro from './Intro.jsx';
 import Layout from './Layout.jsx';
 import Landing from './Landing.jsx';
-import Weight from './Weight.jsx';
-import WorkoutTracker from './WorkoutTracker.jsx';
-import ExerciseView from './ExerciseView.jsx';
+import Weight from './WeightTracker/Weight.jsx';
+import WorkoutTracker from './Exercise/WorkoutTracker.jsx';
+import ExerciseView from './Exercise/ExerciseView.jsx';
 
 const App = React.createClass({
 	render: function() {
