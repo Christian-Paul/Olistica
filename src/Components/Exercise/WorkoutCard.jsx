@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import ExerciseSummary from './ExerciseSummary.jsx'
 
-const WorkoutCard = React.createClass({
-	getInitialState: function() {
-		return ({
+class WorkoutCard extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			workoutTitle: 'Today',
 			exercises: [{
 				name: 'Squats',
@@ -41,30 +43,32 @@ const WorkoutCard = React.createClass({
 					}
 				]
 			}]
-		})
-	},
-	updateEntries: function(userInput) {
+		}
+
+		this.updateEntries = this.updateEntries.bind(this);
+	}
+	updateEntries(userInput) {
 		this.setState({
 			entries: this.state.entries.concat(userInput)
-		})
-	},
-	render: function() {
+		})	
+	}
+	render() {
 		return (
 			<div>
-        <Paper className='workout-card'>
-          <h2>{this.props.title}</h2>
-          {this.props.exercises.map(function(exercise) {
-            return <ExerciseSummary
-                      name={exercise.name}
-                      sets={exercise.sets}
-                    />
-          })}
+				<Paper className='workout-card'>
+					<h2>{this.props.title}</h2>
+					{this.props.exercises.map(function(exercise, i) {
+						return <ExerciseSummary
+							key={i}
+							name={exercise.name}
+							sets={exercise.sets}
+						/>
+					})}
 					<FlatButton label='Edit' secondary={true} />
 				</Paper>
 			</div>
 		)
 	}
-
-});
+};
 
 export default WorkoutCard

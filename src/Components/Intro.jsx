@@ -1,10 +1,10 @@
 import RaisedButton from 'material-ui/RaisedButton';
-import React from 'react';
+import React, { Component } from 'react';
 
 import About from './About.jsx';
 
-const Intro = React.createClass({
-	render: function() {
+class Intro extends Component {
+	render() {
 		return (
 			<div>
 				<section className='landing'>
@@ -28,6 +28,6 @@ const Intro = React.createClass({
 			</div>
 		)
 	}
-});
+};
 
 export default Intro

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const ExerciseSummary = React.createClass({
-	getInitialState: function() {
-		return ({
+class ExerciseSummary extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			workoutTitle: 'Today',
 			exercises: [{
 				name: 'Squats',
@@ -38,26 +40,27 @@ const ExerciseSummary = React.createClass({
 					}
 				]
 			}]
-		})
-	},
-	updateEntries: function(userInput) {
+		}
+
+		this.updateEntries = this.updateEntries.bind(this);
+	}
+	updateEntries(userInput) {
 		this.setState({
 			entries: this.state.entries.concat(userInput)
 		})
-	},
-	render: function() {
+	}
+	render() {
 		return (
 			<div className='exercise-summary'>
-        <h3>{this.props.name}</h3>
-        <div className='set-list'>
-          {this.props.sets.map(function(set) {
-            return <span>{set.weight} x {set.reps}</span>
-          })}
-        </div>
+				<h3>{this.props.name}</h3>
+				<div className='set-list'>
+				{this.props.sets.map(function(set, i) {
+					return <span key={i}>{set.weight} x {set.reps}</span>
+				})}
+				</div>
 			</div>
 		)
 	}
-
-});
+};
 
 export default ExerciseSummary

@@ -1,6 +1,6 @@
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import React from 'react';
+import React, { Component } from 'react';
 import { red500 } from 'material-ui/styles/colors';
 import SvgIcon from 'material-ui/SvgIcon';
 
@@ -33,8 +33,8 @@ const bioIconStyle = {
 	height: 48
 }
 
-const About = React.createClass({
-	render: function() {
+class About extends Component {
+	render() {
 		return (
 			<section className='about'>
 				<section className='project-details-section'>
@@ -109,6 +109,6 @@ const About = React.createClass({
 			</section>
 		)
 	}
-})
+}
 
 export default About

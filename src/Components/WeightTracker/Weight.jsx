@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import WeightTable from './WeightTable.jsx';
 import WeightChart from './WeightChart.jsx';
 
-const Weight = React.createClass({
-	getInitialState: function() {
-		return ({
+class Weight extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
 			entries: [
 				{
 					date: new Date(2016, 6, 28, 14, 39, 7),
@@ -32,14 +33,16 @@ const Weight = React.createClass({
 					weight: '160.00'
 				}
 			]
-		})
-	},
-	updateEntries: function(userInput) {
+		}
+
+		this.updateEntries = this.updateEntries.bind(this);
+	}
+	updateEntries(userInput) {
 		this.setState({
 			entries: this.state.entries.concat(userInput)
 		})
-	},
-	render: function() {
+	}
+	render() {
 		return (
 			<div className='weight'>
 				<h1 className='module-title'>Weight Tracker</h1>
@@ -50,7 +53,6 @@ const Weight = React.createClass({
 			</div>
 		)
 	}
-
-});
+};
 
 export default Weight

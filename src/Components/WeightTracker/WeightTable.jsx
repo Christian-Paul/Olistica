@@ -1,26 +1,32 @@
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
-import React from 'react';
+import React, { Component } from 'react';
 
 import AddingEntryInterface from './AddingEntryInterface.jsx';
 
-const WeightTable = React.createClass({
-	getInitialState: function() {
-		return ({
+class WeightTable extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
 			addingEntry: false
-		})
-	},
-	startAdding: function() {
+		}
+
+		this.startAdding = this.startAdding.bind(this);
+		this.stopAdding = this.stopAdding.bind(this);
+	}
+	startAdding() {
 		this.setState({
 			addingEntry: true
 		})
-	},
-	stopAdding: function() {
+	}
+	stopAdding() {
 		this.setState({
 			addingEntry: false
 		})
-	},
-	render: function() {
+	}
+	render() {
+		var isAddingEntry = this.state.addingEntry;
+
 		return (
 			<Paper className='table-paper'>
 				<h3 className='table-title'>Weight Table</h3>
@@ -42,10 +48,14 @@ const WeightTable = React.createClass({
 					})}
 					</tbody>
 				</table>
-				{this.state.addingEntry ? <AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> : <FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />}
+				{isAddingEntry ? (
+					<AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> 
+				) : (
+					<FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />
+				)}
 			</Paper>
 		)
 	}
-})
+}
 
 export default WeightTable

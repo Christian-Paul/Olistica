@@ -8,7 +8,7 @@ import { List, ListItem } from 'material-ui/List';
 import MenuItem from 'material-ui/MenuItem';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import React from 'react';
+import React, { Component } from 'react';
 import SocialMood from 'material-ui/svg-icons/social/mood';
 import ActionAccessibility from 'material-ui/svg-icons/action/accessibility';
 import { Link } from 'react-router'
@@ -28,19 +28,25 @@ const UserMenu = (props) => (
     </IconMenu>
 )
 
-const Navbar = React.createClass({
-	getInitialState: function() {
-		return ({
+
+class Navbar extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			dockOpen: false
-		})
-	},
-	closeDock: function() {
+		}
+
+		this.closeDock = this.closeDock.bind(this);
+		this.toggleDock = this.toggleDock.bind(this);
+	}
+	closeDock() {
 		this.setState({ dockOpen: false })
-	},
-	toggleDock: function() {
-		this.setState({ dockOpen: !this.state.dockOpen })
-	},
-	render: function() {
+	}
+	toggleDock() {
+		this.setState({ dockOpen: !this.state.dockOpen })	
+	}
+	render() {
 		return (
 			<div>
 				<AppBar
@@ -85,7 +91,6 @@ const Navbar = React.createClass({
 			</div>
 		)
 	}
-
-});
+};
 
 export default Navbar

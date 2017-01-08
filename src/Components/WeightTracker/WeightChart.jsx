@@ -1,9 +1,9 @@
-import {Chart} from 'react-google-charts';
+import { Chart } from 'react-google-charts';
 import Paper from 'material-ui/Paper';
-import React from 'react';
+import React, { Component } from 'react';
 
-const Weight = React.createClass({
-	render: function() {
+class Weight extends Component {
+	render() {
 		var chartData = this.props.entries.map((entry) => [entry.date, Number(entry.weight)]);
 
 		return (
@@ -43,6 +43,6 @@ const Weight = React.createClass({
 			</Paper>
 		)
 	}
-});
+};
 
 export default Weight

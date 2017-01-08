@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import WorkoutCard from './WorkoutCard.jsx';
 
-const ExerciseView = React.createClass({
-	getInitialState: function() {
-		return ({
-			workouts: []
-		})
-	},
-	componentDidMount: function() {
-		var self = this;
+class ExerciseView extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			workouts: []	
+		}
+	}
+	componentDidMount() {
 		$.ajax({
-      url: "/workouts/summary",
-      success: function (data) {
-        if (!data.error) {
-					self.setState({
+			url: "/workouts/summary",
+			success: (data) => {
+				if (!data.error) {
+					this.setState({
 						workouts: data.workouts
 					});
-        } else {
-          console.log("error");
-        }
-      },
-      dataType: "json"
-    });
-	},
-	render: function() {
+				} else {
+					console.log("error");
+				}
+			},
+			dataType: "json"
+		});
+	}
+	render() {
 		return (
 			<div className='weight'>
 				<div>
@@ -38,13 +39,12 @@ const ExerciseView = React.createClass({
 					</span>
 					<h2>Workouts</h2>
 					{this.state.workouts.map((workout, i) => {
-						return <WorkoutCard title={workout.title} exercises={workout.exercises} />;
+						return <WorkoutCard key={i} title={workout.title} exercises={workout.exercises} />;
 					})}
 				</div>
 			</div>
 		)
 	}
-
-});
+};
 
 export default ExerciseView

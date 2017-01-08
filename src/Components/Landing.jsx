@@ -1,8 +1,8 @@
 import RaisedButton from 'material-ui/RaisedButton';
-import React from 'react';
+import React, { Component } from 'react';
 
-const Landing = React.createClass({
-	componentDidMount: function() {
+class Landing extends Component {
+	componentDidMount() {
 		// upon initially loading index route, check if user is signed in
 		// if they are redirect to a module
 		// otherwise, redirect to into page
@@ -11,13 +11,13 @@ const Landing = React.createClass({
 		} else {
 			this.context.router.push('/intro');
 		}
-	},
-	render: function() {
+	}
+	render() {
 		return (
 			<div>Please wait...</div>
 		)
 	}
-});
+};
 
 Landing.contextTypes = {
 	router: React.PropTypes.object

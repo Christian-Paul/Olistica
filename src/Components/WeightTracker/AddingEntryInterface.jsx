@@ -1,27 +1,33 @@
 import DatePicker from 'material-ui/DatePicker';
 import FlatButton from 'material-ui/FlatButton';
-import React from 'react';
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 
-const AddingEntryInterface = React.createClass({
-	getInitialState: function() {
-		return ({
+class AddingEntryInterface extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			weight: '',
 			date: new Date(),
 			errorMessage: ''
-		})
-	},
-	handleWeightInput: function(e) {
+		}
+
+		this.handleWeightInput = this.handleWeightInput.bind(this);
+		this.handleDateInput = this.handleDateInput.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleWeightInput(e) {
 		this.setState({
 			weight: e.target.value
 		})
-	},
-	handleDateInput: function(n, newDate) {
+	}
+	handleDateInput(n, newDate) {
 		this.setState({
 			date: newDate
 		})
-	},
-	handleSubmit: function() {
+	}
+	handleSubmit() {
 		var weight = this.state.weight;
 		var weightNumber = Number(weight);
 		var date = this.state.date; 
@@ -41,8 +47,8 @@ const AddingEntryInterface = React.createClass({
 				errorMessage: 'Must be a positive number'
 			})
 		}
-	},
-	render: function() {
+	}
+	render() {
 		return (
 			<div style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
 				<TextField hintText="Weight" errorText={this.state.errorMessage} value={this.state.weight} onChange={this.handleWeightInput} />
@@ -52,6 +58,6 @@ const AddingEntryInterface = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
 export default AddingEntryInterface

@@ -50,11 +50,11 @@ const ExerciseSet = React.createClass({
 		return (
 			<div className='weight'>
 				<span>
-					<TextField style={styles.liftInput} value={this.props.weight} />
+					<TextField id={this.props.id} style={styles.liftInput} value={this.props.weight} />
 
 					reps of
 
-					<TextField style={styles.liftInput} value={this.props.reps} /> lbs
+					<TextField id={this.props.id} style={styles.liftInput} value={this.props.reps} /> lbs
 
 					<IconButton>
 						<NavigationClose  />

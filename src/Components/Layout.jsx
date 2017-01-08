@@ -1,7 +1,7 @@
 import {red500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import React from 'react';
+import React, { Component } from 'react';
 
 import Navbar from './Navbar.jsx';
 
@@ -11,15 +11,21 @@ const muiTheme = getMuiTheme({
 	}
 });
 
-const Layout = React.createClass({
-	getInitialState: function() {
-		return {
+
+class Layout extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			userIsAuthenticated: false,
 			userName: false,
-			userId: false
+			userId: false	
 		}
-	},
-	signIn: function() {
+
+		this.signIn = this.signIn.bind(this)
+		this.signOut = this.signOut.bind(this)
+	}
+	signIn() {
 		this.setState({
 			userIsAuthenticated: true,
 			userName: 'Socrates',
@@ -27,26 +33,25 @@ const Layout = React.createClass({
 		});
 
 		this.context.router.push('/weight');
-	},
-	signOut: function() {
+	}
+	signOut() {
 		this.setState({
 			userIsAuthenticated: false,
 			userName: false,
 			userId: false
 		});
 
-		this.context.router.push('/intro');
-	},
-	render: function() {
-		var self = this;
+		this.context.router.push('/intro');	
+	}
+	render() {
 		// Use react helper methods to pass state to arbitrary child component
-		var children = React.Children.map(this.props.children, function (child) {
+		var children = React.Children.map(this.props.children, (child) => {
 			return React.cloneElement(child, {
-				signIn: self.signIn,
-				signOut: self.signOut,
-				userIsAuthenticated: self.state.userIsAuthenticated,
-				userName: self.state.userName,
-				userId: self.state.userId
+				signIn: this.signIn,
+				signOut: this.signOut,
+				userIsAuthenticated: this.state.userIsAuthenticated,
+				userName: this.state.userName,
+				userId: this.state.userId
 			})
 		})
 
@@ -59,7 +64,7 @@ const Layout = React.createClass({
 			</MuiThemeProvider>
 		)
 	}
-});
+};
 
 Layout.contextTypes = {
 	router: React.PropTypes.object

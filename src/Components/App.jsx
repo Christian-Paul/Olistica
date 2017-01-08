@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Router, Route, IndexLink, IndexRoute, browserHistory } from 'react-router';
 
 import About from './About.jsx';
@@ -9,8 +9,8 @@ import Weight from './WeightTracker/Weight.jsx';
 import WorkoutTracker from './Exercise/WorkoutTracker.jsx';
 import ExerciseView from './Exercise/ExerciseView.jsx';
 
-const App = React.createClass({
-	render: function() {
+class App extends Component{
+	render() {
 		return (
 			<Router history={browserHistory}>
 				<Route path='/' component={Layout}>
@@ -24,6 +24,6 @@ const App = React.createClass({
 			</Router>
 		)
 	}
-});
+};
 
 export default App

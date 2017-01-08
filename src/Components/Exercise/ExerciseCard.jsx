@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import ExerciseSet from './ExerciseSet.jsx';
 
-const ExerciseCard = React.createClass({
-	getInitialState: function() {
-		return ({
+class ExerciseCard extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			entries: [
 				{
 					date: new Date(2016, 6, 28, 14, 39, 7),
@@ -32,27 +34,28 @@ const ExerciseCard = React.createClass({
 					weight: '160.00'
 				}
 			]
-		})
-	},
-	updateEntries: function(userInput) {
+		}
+
+		this.updateEntries = this.updateEntries.bind(this);
+	}
+	updateEntries(userInput) {
 		this.setState({
 			entries: this.state.entries.concat(userInput)
 		})
-	},
-	render: function() {
+	}
+	render() {
 		return (
 			<div className='weight'>
 				<Paper>
 					<h3>{ this.props.name }</h3>
 					{this.props.sets.map(function (set, i) {
-						return <ExerciseSet reps={set.reps} weight={set.weight} />;
+						return <ExerciseSet key={i} id={String(i)} reps={set.reps} weight={set.weight} />;
 					})}
 					<RaisedButton label='Save' primary={true} />
 				</Paper>
 			</div>
 		)
 	}
-
-});
+};
 
 export default ExerciseCard
