@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import WorkoutCard from './WorkoutCard.jsx';
+import axios from 'axios';
 
 class ExerciseView extends Component {
 	constructor(props) {
@@ -12,19 +13,15 @@ class ExerciseView extends Component {
 		}
 	}
 	componentDidMount() {
-		$.ajax({
-			url: "/workouts/summary",
-			success: (data) => {
-				if (!data.error) {
-					this.setState({
-						workouts: data.workouts
-					});
-				} else {
-					console.log("error");
-				}
-			},
-			dataType: "json"
-		});
+		axios.get('/workouts/summary')
+			.then((data) => {
+				this.setState({
+					workouts: data.data.workouts
+				});
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
 	}
 	render() {
 		return (

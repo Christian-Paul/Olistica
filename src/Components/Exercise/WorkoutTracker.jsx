@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ExerciseCard from './ExerciseCard.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 
 class WorkoutTracker extends Component {
 	constructor(props) {
@@ -11,19 +12,15 @@ class WorkoutTracker extends Component {
 		}
 	}
 	componentDidMount() {
-		$.ajax({
-			url: "/workouts/workout/586706f39f3be421c0b24ec7",
-			success: (data) => {
-				if (!data.error) {
-					this.setState({
-					workout: data.workout
+		axios.get('/workouts/workout/586706f39f3be421c0b24ec7')
+			.then((data) => {
+				this.setState({
+					workout: data.data.workout
 				});
-				} else {
-					console.log("error");
-				}
-			},
-			dataType: "json"
-		});
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
 	}
 	render() {
 		return (
