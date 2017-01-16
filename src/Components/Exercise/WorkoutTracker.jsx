@@ -8,7 +8,7 @@ class WorkoutTracker extends Component {
 		super(props)
 
 		this.state = {
-			workout: { exercises: [] }		
+			workout: { exercises: [] }
 		}
 	}
 	componentDidMount() {

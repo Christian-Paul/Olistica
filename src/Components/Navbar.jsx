@@ -44,9 +44,17 @@ class Navbar extends Component {
 		this.setState({ dockOpen: false })
 	}
 	toggleDock() {
-		this.setState({ dockOpen: !this.state.dockOpen })	
+		this.setState({ dockOpen: !this.state.dockOpen })
 	}
 	render() {
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+    
 		return (
 			<div>
 				<AppBar
@@ -61,7 +69,7 @@ class Navbar extends Component {
 					onLeftIconButtonTouchTap={this.toggleDock}
 					showMenuIconButton={this.props.userIsAuthenticated}
 					iconElementRight={
-						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />
+						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <div className="g-signin2" data-onsuccess="onSignIn"></div> /*<FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />*/
 					}
 				/>
 				<Drawer
