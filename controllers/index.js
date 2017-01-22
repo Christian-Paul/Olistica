@@ -2,7 +2,24 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
+router.use('/auth', require('./auth'));
 router.use('/workouts', require('./workouts'));
+
+
+// perhaps this should go somewhere else
+router.get('/session-data', function (req, res) {
+  var data = {
+    logged: req.session.userId !== undefined
+  };
+
+  res.send(data);
+});
+
+router.get('/logout', function (req, res) {
+  req.session.destroy(function() {
+    res.redirect('/');
+  });
+});
 
 
 // React Router browser history requires every get route to serve the index.html file in case a user

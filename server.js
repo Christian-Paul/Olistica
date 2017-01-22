@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var bodyParser = require('body-parser');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -19,7 +21,7 @@ if(port === 3000) {
 	var webpack = require('webpack');
 	var webpackConfig = require('./webpack.config');
 	var compiler = webpack(webpackConfig);
-	
+
 	app.use(require('webpack-dev-middleware')(compiler, {
 		publicPath: webpackConfig.output.publicPath
 	}));
@@ -38,6 +40,19 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connected!');
 });
+
+// session handler
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  secret: 'session secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: false,
+    secure: false,
+    maxAge: 31540000000
+  }
+}));
 
 // middleware
 app.use('/bin', express.static(path.join(__dirname, 'bin')));

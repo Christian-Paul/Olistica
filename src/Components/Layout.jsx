@@ -2,6 +2,7 @@ import {red500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Navbar from './Navbar.jsx';
 
@@ -19,29 +20,63 @@ class Layout extends Component {
 		this.state = {
 			userIsAuthenticated: false,
 			userName: false,
-			userId: false	
+			userId: false
 		}
 
 		this.signIn = this.signIn.bind(this)
 		this.signOut = this.signOut.bind(this)
 	}
-	signIn() {
-		this.setState({
-			userIsAuthenticated: true,
-			userName: 'Socrates',
-			userId: 1234
-		});
+	componentDidMount() {
+		axios.get('/session-data')
+			.then((response) => {
+				var data = response.data;
+				this.setState({
+					userIsAuthenticated: data.logged,
+					userName: 'Socrates',
+					userId: 1234
+				});
 
-		this.context.router.push('/weight');
+				if (data.logged) {
+					this.context.router.push('/weight');
+				}
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
+	}
+	signIn(googleUser) {
+		console.log(googleUser);
+
+		var id_token = googleUser.getAuthResponse().id_token;
+
+		axios.get('/auth/google-signin/' + id_token)
+			.then((response) => {
+				var data = response.data;
+				if (!data.error) {
+					this.setState({
+						userIsAuthenticated: true,
+						userName: 'Socrates',
+						userId: 1234
+					});
+
+					this.context.router.push('/weight');
+				} else {
+					console.log(data.error);
+				}
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
 	}
 	signOut() {
-		this.setState({
+		/*this.setState({
 			userIsAuthenticated: false,
 			userName: false,
 			userId: false
 		});
 
-		this.context.router.push('/intro');	
+		this.context.router.push('/intro');*/
+		window.location = '/logout';
 	}
 	render() {
 		// Use react helper methods to pass state to arbitrary child component

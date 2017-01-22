@@ -13,6 +13,7 @@ import SocialMood from 'material-ui/svg-icons/social/mood';
 import ActionAccessibility from 'material-ui/svg-icons/action/accessibility';
 import { Link } from 'react-router'
 import LocalLibrary from 'material-ui/svg-icons/maps/local-library';
+import GoogleLogin from 'react-google-login';
 
 const UserMenu = (props) => (
     <IconMenu
@@ -27,6 +28,10 @@ const UserMenu = (props) => (
 		<MenuItem primaryText="Sign out" onTouchTap={props.signOut} />
     </IconMenu>
 )
+
+const responseGoogle = (response) => {
+  console.log(response);
+}
 
 
 class Navbar extends Component {
@@ -47,14 +52,6 @@ class Navbar extends Component {
 		this.setState({ dockOpen: !this.state.dockOpen })
 	}
 	render() {
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-    }
-    
 		return (
 			<div>
 				<AppBar
@@ -69,7 +66,7 @@ class Navbar extends Component {
 					onLeftIconButtonTouchTap={this.toggleDock}
 					showMenuIconButton={this.props.userIsAuthenticated}
 					iconElementRight={
-						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <div className="g-signin2" data-onsuccess="onSignIn"></div> /*<FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />*/
+						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <GoogleLogin clientId="696320046142-po33f20q5n669k31o48mr05kucs39p39.apps.googleusercontent.com" buttonText="SIGN IN" onSuccess={this.props.signIn} onFailure={responseGoogle} /> /*<FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />*/
 					}
 				/>
 				<Drawer
