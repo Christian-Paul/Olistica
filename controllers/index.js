@@ -4,12 +4,14 @@ var path = require('path');
 
 router.use('/auth', require('./auth'));
 router.use('/workouts', require('./workouts'));
+router.use('/weight', require('./weight'));
 
 
 // perhaps this should go somewhere else
 router.get('/session-data', function (req, res) {
   var data = {
-    logged: req.session.userId !== undefined
+    logged: req.session.userId !== undefined,
+		userId: req.session.userId
   };
 
   res.send(data);

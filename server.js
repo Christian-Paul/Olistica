@@ -55,9 +55,10 @@ app.use(session({
 }));
 
 // middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use('/bin', express.static(path.join(__dirname, 'bin')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(require("./controllers"));
 
 // begin app

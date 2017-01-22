@@ -30,7 +30,7 @@ router.get('/google-signin/:idtoken', function (req, res) {
 
           req.session.userId = userid;
 
-          console.log(userid);
+          console.log('User ID:' + userid);
 
           res.send({
             "status": "success"

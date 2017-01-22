@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import WeightTable from './WeightTable.jsx';
 import WeightChart from './WeightChart.jsx';
@@ -9,38 +10,52 @@ class Weight extends Component {
 		this.state = {
 			entries: [
 				{
-					date: new Date(2016, 6, 28, 14, 39, 7),
+					date: new Date("Sun Jun 05 2016 00:00:00 GMT-0400 (Eastern Daylight Time)"),
 					weight: '150.00'
-				},
-				{
-					date: new Date(2016, 7, 23, 14, 39, 7),
-					weight: '155.00'
-				},
-				{
-					date: new Date(2016, 7, 26, 14, 39, 7),
-					weight: '155.00'
-				},
-				{
-					date: new Date(2016, 7, 29, 14, 39, 7),
-					weight: '156.00'
-				},
-				{
-					date: new Date(2016, 8, 3, 14, 39, 7),
-					weight: '158.00'
-				},
-				{
-					date: new Date(2016, 8, 10, 14, 39, 7),
-					weight: '160.00'
 				}
 			]
 		}
 
 		this.updateEntries = this.updateEntries.bind(this);
 	}
+	componentDidMount() {
+		axios.get('/weight/list').then((response) => {
+				var data = response.data;
+				if (data.error) {
+					console.log(data.error);
+				} else {
+					for (var i = 0;i < data.list.length;++i) {
+						data.list[i].date = new Date(data.list[i].date);
+					}
+
+					this.setState({
+						entries: data.list
+					});
+				}
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
+	}
 	updateEntries(userInput) {
 		this.setState({
 			entries: this.state.entries.concat(userInput)
-		})
+		});
+
+		axios.post('/weight/add', {
+			date: userInput.date,
+			weight: userInput.weight
+		}).then((response) => {
+				var data = response.data;
+				if (data.error) {
+					console.log(data.error);
+				} else {
+					console.log(data);
+				}
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
 	}
 	render() {
 		return (

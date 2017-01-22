@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 
 class Weight extends Component {
 	render() {
-		var chartData = this.props.entries.map((entry) => [entry.date, Number(entry.weight)]);
+		var chartData = this.props.entries.map((entry) => [new Date(entry.date), Number(entry.weight)]);
 
 		return (
 			<Paper className='chart-paper'>
 				<div className="my-pretty-chart-container">
-					<Chart
+
+					{ chartData.length > 0 ? (<Chart
 						chartType="LineChart"
 						data={[
 										['Date', 'Weight']
@@ -38,7 +39,10 @@ class Weight extends Component {
 						width="100%"
 						height="400px"
 						legend_toggle
-					/>
+					/>) : (
+						<h3>No Weight Data To Display</h3>
+					)
+				}
 			    </div>
 			</Paper>
 		)
