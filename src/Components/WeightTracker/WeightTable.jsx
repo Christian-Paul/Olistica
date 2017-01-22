@@ -30,6 +30,11 @@ class WeightTable extends Component {
 		return (
 			<Paper className='table-paper'>
 				<h3 className='table-title'>Weight Table</h3>
+					{isAddingEntry ? (
+						<AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} />
+					) : (
+						<FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />
+					)}
 				<table>
 					<thead>
 						<tr>
@@ -38,7 +43,7 @@ class WeightTable extends Component {
 						</tr>
 					</thead>
 					<tbody>
-					{this.props.entries.map(function(entry, i) {
+					{Array.prototype.slice.call(this.props.entries).reverse().map(function(entry, i) {
 						return (
 							<tr key={i}>
 								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
@@ -48,11 +53,6 @@ class WeightTable extends Component {
 					})}
 					</tbody>
 				</table>
-				{isAddingEntry ? (
-					<AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} /> 
-				) : (
-					<FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />
-				)}
 			</Paper>
 		)
 	}
