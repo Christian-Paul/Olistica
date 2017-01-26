@@ -52,7 +52,7 @@ class AddingEntryInterface extends Component {
 		return (
 			<div style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
 				<TextField hintText="Weight" errorText={this.state.errorMessage} value={this.state.weight} onChange={this.handleWeightInput} />
-				<DatePicker hintText="Date" onChange={this.handleDateInput} defaultDate={new Date()} />
+				<DatePicker autoOk={true} maxDate={new Date()} hintText="Date" onChange={this.handleDateInput} defaultDate={new Date()} />
 				<FlatButton onTouchTap={this.handleSubmit} label="Submit" primary={true} />
 				<FlatButton onTouchTap={this.props.stopAdding} label="Cancel" primary={true} />
 			</div>
