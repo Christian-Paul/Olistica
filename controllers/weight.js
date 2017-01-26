@@ -43,4 +43,23 @@ router.get('/list', requireAuthentication, function (req, res) {
   });
 });
 
+router.post('/delete', requireAuthentication, function (req, res) {
+  var userId = req.session.userId;
+  var weightId = req.body.weightId;
+
+  console.log('weight id: ', weightId);
+
+  Weight.deleteEntry(userId, weightId, function (err, response) {
+    if (err) {
+      res.send({
+        error: "Error deleting weight entry"
+      });
+    } else {
+      res.send({
+        status: "success"
+      })
+    }
+  });
+});
+
 module.exports = router;

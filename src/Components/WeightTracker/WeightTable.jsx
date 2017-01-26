@@ -13,7 +13,6 @@ class WeightTable extends Component {
 
 		this.startAdding = this.startAdding.bind(this);
 		this.stopAdding = this.stopAdding.bind(this);
-		this.deleteEntry = this.deleteEntry.bind(this);
 	}
 	startAdding() {
 		this.setState({
@@ -25,9 +24,6 @@ class WeightTable extends Component {
 			addingEntry: false
 		})
 	}
-	deleteEntry(id) {
-		console.log('deleting entry: ', id);
-	}
 	render() {
 		var isAddingEntry = this.state.addingEntry;
 
@@ -35,7 +31,7 @@ class WeightTable extends Component {
 			<Paper className='table-paper'>
 				<h3 className='table-title'>Weight Table</h3>
 					{isAddingEntry ? (
-						<AddingEntryInterface stopAdding={this.stopAdding} updateEntries={this.props.updateEntries} />
+						<AddingEntryInterface stopAdding={this.stopAdding} addEntry={this.props.addEntry} />
 					) : (
 						<FlatButton style={{marginTop: '2rem', marginBottom: '2rem'}} onTouchTap={this.startAdding} label="Add Entry" primary={true} />
 					)}
@@ -52,7 +48,7 @@ class WeightTable extends Component {
 							<tr key={i}>
 								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
 								<td>{entry.weight}</td>
-								<div class='delete-entry' onClick={() => this.deleteEntry(entry['_id'])}>x</div>
+								<div class='delete-entry' onClick={() => this.props.deleteEntry(entry['_id'])}>x</div>
 							</tr>
 						)
 					})}

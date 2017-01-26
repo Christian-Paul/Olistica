@@ -40,7 +40,7 @@ class AddingEntryInterface extends Component {
 				weight: weightNumber.toFixed(2)
 			}
 
-			this.props.updateEntries(entry);
+			this.props.addEntry(entry);
 			this.props.stopAdding();
 		} else {
 			this.setState({

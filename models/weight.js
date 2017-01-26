@@ -25,6 +25,19 @@ exports.addNew = function (userId, date, weight, callback) {
   });
 }
 
+exports.deleteEntry = function (userId, weightId, callback) {
+  console.log('trying to delete entry!');
+
+  Weight.find({ _id: weightId}).remove().exec(function (err, list) {
+    if (err) {
+      console.log(err);
+      callback(err);
+    } else {
+      callback(null, list);
+    }
+  });
+}
+
 exports.list = function (userId, callback) {
   Weight.find({ userId: userId}).exec(function (err, list) {
     if (err) {
