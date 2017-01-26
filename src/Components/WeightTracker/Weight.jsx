@@ -24,6 +24,8 @@ class Weight extends Component {
 				if (data.error) {
 					console.log(data.error);
 				} else {
+					console.log('number of entries: ', data.list.length)
+
 					for (var i = 0;i < data.list.length;++i) {
 						data.list[i].date = new Date(data.list[i].date);
 					}

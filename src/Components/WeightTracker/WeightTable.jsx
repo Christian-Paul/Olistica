@@ -13,6 +13,7 @@ class WeightTable extends Component {
 
 		this.startAdding = this.startAdding.bind(this);
 		this.stopAdding = this.stopAdding.bind(this);
+		this.deleteEntry = this.deleteEntry.bind(this);
 	}
 	startAdding() {
 		this.setState({
@@ -23,6 +24,9 @@ class WeightTable extends Component {
 		this.setState({
 			addingEntry: false
 		})
+	}
+	deleteEntry(id) {
+		console.log('deleting entry: ', id);
 	}
 	render() {
 		var isAddingEntry = this.state.addingEntry;
@@ -43,11 +47,12 @@ class WeightTable extends Component {
 						</tr>
 					</thead>
 					<tbody>
-					{Array.prototype.slice.call(this.props.entries).reverse().map(function(entry, i) {
+					{Array.prototype.slice.call(this.props.entries).reverse().map((entry, i) => {
 						return (
 							<tr key={i}>
 								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
 								<td>{entry.weight}</td>
+								<div class='delete-entry' onClick={() => this.deleteEntry(entry['_id'])}>x</div>
 							</tr>
 						)
 					})}
