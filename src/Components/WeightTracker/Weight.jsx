@@ -42,10 +42,6 @@ class Weight extends Component {
 			});
 	}
 	addEntry(userInput) {
-		this.setState({
-			entries: this.state.entries.concat(userInput)
-		});
-
 		axios.post('/weight/add', {
 			date: userInput.date,
 			weight: userInput.weight
@@ -54,6 +50,7 @@ class Weight extends Component {
 				if (data.error) {
 					console.log(data.error);
 				} else {
+					this.updateEntries()
 					console.log(data);
 				}
 			})

@@ -1,6 +1,8 @@
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import React, { Component } from 'react';
+import IconButton from 'material-ui/IconButton';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
 
 import AddingEntryInterface from './AddingEntryInterface.jsx';
 
@@ -48,7 +50,9 @@ class WeightTable extends Component {
 							<tr key={i}>
 								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
 								<td>{entry.weight}</td>
-								<div class='delete-entry' onClick={() => this.props.deleteEntry(entry['_id'])}>x</div>
+								<IconButton>
+									<ActionDelete onClick={() => this.props.deleteEntry(entry['_id'])} />
+								</IconButton>
 							</tr>
 						)
 					})}
