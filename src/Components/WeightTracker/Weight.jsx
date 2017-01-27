@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Paper from 'material-ui/Paper';
 
 import WeightTable from './WeightTable.jsx';
 import WeightChart from './WeightChart.jsx';
+import AddFirstEntry from './AddFirstEntry.jsx';
 
 class Weight extends Component {
 	constructor(props) {
@@ -103,10 +105,18 @@ class Weight extends Component {
 		return (
 			<div className='weight'>
 				<h1 className='module-title'>Weight Tracker</h1>
-				<div className='paper-container'>
-					<WeightChart entries={this.state.entries} />
-					<WeightTable deleteEntry={this.deleteEntry} addEntry={this.addEntry} entries={this.state.entries} />
-				</div>
+					{this.state.entries.length > 0 ? (
+						<div className='paper-container'>
+							<WeightChart entries={this.state.entries} />
+							<WeightTable deleteEntry={this.deleteEntry} addEntry={this.addEntry} entries={this.state.entries} />
+						</div>
+					) : (
+						<div className='paper-container'>
+							<Paper className='first-entry-paper'>
+								<AddFirstEntry addEntry={this.addEntry} />
+							</Paper>
+						</div>
+					)}
 			</div>
 		)
 	}
