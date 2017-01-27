@@ -66,7 +66,7 @@ class Navbar extends Component {
 					onLeftIconButtonTouchTap={this.toggleDock}
 					showMenuIconButton={this.props.userIsAuthenticated}
 					iconElementRight={
-						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <GoogleLogin clientId="696320046142-po33f20q5n669k31o48mr05kucs39p39.apps.googleusercontent.com" buttonText="SIGN IN" onSuccess={this.props.signIn} onFailure={responseGoogle} /> /*<FlatButton label="Sign in" secondary={true} onTouchTap={this.props.signIn} />*/
+						this.props.userIsAuthenticated ? <UserMenu signOut={this.props.signOut} /> : <GoogleLogin clientId="696320046142-po33f20q5n669k31o48mr05kucs39p39.apps.googleusercontent.com" buttonText="SIGN IN" onSuccess={this.props.signIn} onFailure={responseGoogle} className='sign-in-button' />
 					}
 				/>
 				<Drawer
