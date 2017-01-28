@@ -34,7 +34,7 @@ if(port === 3000) {
 	};
 }
 
-mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongoosePassword + '@ds149268.mlab.com:49268/olistica');
+mongoose.connect('mongodb://' + encodeURIComponent(config.mongooseUsername) + ':' + encodeURIComponent(config.mongoosePassword) + '@ds149268.mlab.com:49268/olistica');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
