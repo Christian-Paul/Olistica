@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var config = require('../config');
 
 router.use('/auth', require('./auth'));
 router.use('/workouts', require('./workouts'));
@@ -27,7 +28,7 @@ router.get('/logout', function (req, res) {
 // React Router browser history requires every get route to serve the index.html file in case a user
 // refreshes on a page or starts using the app from any non-index route
 router.get('*', function(req, res) {
-	res.sendFile('index.html', { root: 'src'});
+	res.sendFile('index.html', { root: config.publicRoot});
 });
 
 
