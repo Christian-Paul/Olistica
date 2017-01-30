@@ -1,5 +1,9 @@
+$large-screen: 1000px
+$medium-screem: 700px
+
 .weight
 	padding-top: 64px
+	padding-bottom: 4rem
 	display: flex
 	flex-direction: column
 
@@ -12,6 +16,10 @@
 	.paper-container
 		display: flex
 		align-items: flex-start
+		flex-direction: column-reverse
+
+		@media (min-width: $large-screen)
+			flex-direction: row
 
 		.first-entry-paper
 			margin: 0 auto
@@ -19,22 +27,33 @@
 			text-align: center
 
 		.chart-paper
-			width: 50vw
+			width: 90vw
 			height: auto
 			margin: 0 auto
 			text-align: center
 
+			@media (min-width: $medium-screem)
+				width: 80vw
+			@media (min-width: $large-screen)
+				width: 50vw
+
 			.my-pretty-chart-container
-				margin-top: 1rem
-				margin-bottom: 2rem
+				margin-top: 0rem
+				margin-bottom: 0rem
 				width: 100%
 
 		.table-paper
-			width: 30vw
 			margin: 0 auto
+			margin-bottom: 3rem
+			width: 60vw
 			text-align: center
 			display: inline-block
 			padding-bottom: 4rem
+
+			@media (min-width: $medium-screem)
+				width: 50vw
+			@media (min-width: $large-screen)
+				width: 30vw
 
 			.table-title
 				text-align: left
@@ -52,5 +71,8 @@
 				width: 80%
 				border-collapse: collapse
 
-				th, td
+				th, .normal-column
 					border: 1px solid #000
+
+				.delete-column
+					position: absolute

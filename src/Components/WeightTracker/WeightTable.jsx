@@ -6,6 +6,18 @@ import ActionDelete from 'material-ui/svg-icons/action/delete';
 
 import AddingEntryInterface from './AddingEntryInterface.jsx';
 
+const styles = {
+	small: {
+		height: 24,
+		width: 24,
+		padding: 0
+	},
+	smallIcon: {
+		height: 16,
+		width: 16
+	}
+};
+
 class WeightTable extends Component {
 	constructor(props) {
 		super(props)
@@ -31,7 +43,6 @@ class WeightTable extends Component {
 
 		return (
 			<Paper className='table-paper'>
-				<h3 className='table-title'>Weight Table</h3>
 					{isAddingEntry ? (
 						<AddingEntryInterface stopAdding={this.stopAdding} addEntry={this.props.addEntry} />
 					) : (
@@ -48,11 +59,13 @@ class WeightTable extends Component {
 					{Array.prototype.slice.call(this.props.entries).reverse().map((entry, i) => {
 						return (
 							<tr key={i}>
-								<td>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
-								<td>{entry.weight}</td>
-								<IconButton>
-									<ActionDelete onClick={() => this.props.deleteEntry(entry['_id'])} />
-								</IconButton>
+								<td className='normal-column date-column'>{`${entry.date.getMonth()+1}/${entry.date.getDate()}/${entry.date.getFullYear()}`}</td>
+								<td className='normal-column weight-column'>{entry.weight}</td>
+								<td className='delete-column'>
+									<IconButton style={styles.small} iconStyle={styles.smallIcon}>
+										<ActionDelete onClick={() => this.props.deleteEntry(entry['_id'])} />
+									</IconButton>
+								</td>
 							</tr>
 						)
 					})}

@@ -15,7 +15,6 @@ class Weight extends Component {
 										['Date', 'Weight']
 									].concat(chartData)}
 						options={{
-							title: 'Weight Chart',
 							titleTextStyle: {
 								fontName: 'Roboto',
 								fontSize: 30,
