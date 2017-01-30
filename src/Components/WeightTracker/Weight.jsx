@@ -23,25 +23,7 @@ class Weight extends Component {
 		this.updateEntries = this.updateEntries.bind(this);
 	}
 	componentDidMount() {
-		axios.get('/weight/list').then((response) => {
-				var data = response.data;
-				if (data.error) {
-					console.log(data.error);
-				} else {
-					console.log('number of entries: ', data.list.length)
-
-					for (var i = 0;i < data.list.length;++i) {
-						data.list[i].date = new Date(data.list[i].date);
-					}
-
-					this.setState({
-						entries: data.list
-					});
-				}
-			})
-			.catch(function(error) {
-				console.log(error)
-			});
+		this.updateEntries();
 	}
 	addEntry(userInput) {
 		axios.post('/weight/add', {
@@ -68,11 +50,14 @@ class Weight extends Component {
 				if (data.error) {
 					console.log(data.error);
 				} else {
-					console.log('number of entries: ', data.list.length)
 
 					for (var i = 0;i < data.list.length;++i) {
 						data.list[i].date = new Date(data.list[i].date);
 					}
+
+					data.list.sort((a, b) => {
+						return a.date - b.date;
+					})
 
 					this.setState({
 						entries: data.list
