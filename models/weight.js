@@ -39,7 +39,9 @@ exports.deleteEntry = function (userId, weightId, callback) {
 }
 
 exports.list = function (userId, callback) {
-  Weight.find({ userId: userId}).exec(function (err, list) {
+  Weight.find({ userId: userId})
+  .sort({ date: 1 })
+  .exec(function (err, list) {
     if (err) {
       console.log(err);
       callback(err);

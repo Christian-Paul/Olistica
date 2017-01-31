@@ -54,11 +54,7 @@ class Weight extends Component {
 					for (var i = 0;i < data.list.length;++i) {
 						data.list[i].date = new Date(data.list[i].date);
 					}
-
-					data.list.sort((a, b) => {
-						return a.date - b.date;
-					})
-
+					
 					this.setState({
 						entries: data.list
 					});
